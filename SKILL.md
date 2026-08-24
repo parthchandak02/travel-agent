@@ -66,8 +66,13 @@ Phase 2: Synthesize
 Phase 3: Render HTML
   node scripts/render-trip-explorer.js trip-explorer.json index.html
   (auto-runs enrich-images.mjs for hero banners, photo galleries, activity/lodging thumbnails)
+  Design rules: references/trip-explorer-design.md
 
-Phase 4: User picks option + day plan
+Phase 4: Publish (optional)
+  bash scripts/publish-trip-explorer.sh ~/Documents/Research/travel/{trip-slug}/
+  → https://travel.parthchandak.info (Cloudflare Pages, no auth)
+
+Phase 5: User picks option + day plan
   Convert to TripKit YAML → references/tripkit-bridge.md
   npx tripkit validate && npx tripkit trip.yaml trip-map.html
 ```

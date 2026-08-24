@@ -9,105 +9,99 @@
 <style>
 :root{--bg:#f0ede6;--card:#fff;--text:#1a1a18;--muted:#6b6860;--accent:#1b5e3b;--accent2:#2563a8;--warn:#c44b25;--amber:#a16207;--border:rgba(0,0,0,.08);--r:14px;--font:'DM Sans',system-ui,sans-serif;--serif:'Instrument Serif',Georgia,serif}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.5}
-a{color:var(--accent2)}a:hover{text-decoration:underline}
-.wrap{max-width:1180px;margin:0 auto;padding:16px 16px 100px}
-.hero-top{background:linear-gradient(135deg,#1b5e3b,#1e4d6b);color:#fff;border-radius:var(--r);padding:28px 24px;margin-bottom:20px}
-.hero-top h1{font-family:var(--serif);font-size:clamp(26px,5vw,38px);font-weight:400}
-.hero-top .sub{opacity:.88;font-size:14px;margin-top:4px}
-.pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-.pill{background:rgba(255,255,255,.16);padding:5px 12px;border-radius:20px;font-size:12px}
-.urgency{background:#fdeee8;color:var(--warn);border-left:4px solid var(--warn);padding:12px 14px;border-radius:8px;margin:16px 0;font-size:13px}
-.nav-sticky{position:sticky;top:0;z-index:200;background:rgba(240,237,230,.96);backdrop-filter:blur(10px);padding:8px 0;margin:0 -16px 16px;padding-left:16px;padding-right:16px;border-bottom:1px solid var(--border);display:flex;gap:6px;overflow-x:auto}
-.nav-sticky button{border:1px solid var(--border);background:var(--card);padding:8px 14px;border-radius:20px;font-size:12px;cursor:pointer;white-space:nowrap;font-family:var(--font);font-weight:500}
-.nav-sticky button.active{background:var(--accent);color:#fff;border-color:var(--accent)}
-h2{font-family:var(--serif);font-size:26px;margin:24px 0 12px;font-weight:400}
-h3{font-size:17px;margin:20px 0 10px;font-weight:600}
-.section-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:10px}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.55}
+a{color:var(--accent2);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:1100px;margin:0 auto;padding:20px 16px 80px}
+.hero{background:linear-gradient(135deg,#1b5e3b 0%,#1e4d6b 100%);color:#fff;border-radius:var(--r);padding:32px 28px;margin-bottom:24px}
+.hero h1{font-family:var(--serif);font-size:clamp(28px,5vw,40px);font-weight:400;line-height:1.15}
+.hero .meta{opacity:.9;font-size:14px;margin-top:8px}
+.urgency{background:#fdeee8;color:var(--warn);border-left:4px solid var(--warn);padding:12px 14px;border-radius:8px;margin-top:16px;font-size:13px}
+h2{font-family:var(--serif);font-size:24px;margin:28px 0 12px;font-weight:400}
+h3{font-size:16px;margin:24px 0 10px;font-weight:600}
+.label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:8px}
 
-/* Visual picker — 3 big photo cards */
-.visual-picker{display:grid;gap:14px;margin-bottom:28px}
-@media(min-width:760px){.visual-picker{grid-template-columns:repeat(3,1fr)}}
-.pick-card{position:relative;border-radius:var(--r);overflow:hidden;cursor:pointer;min-height:280px;border:3px solid transparent;transition:transform .2s,border-color .2s,box-shadow .2s}
-.pick-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.15)}
-.pick-card.active{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent)}
-.pick-card .bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .4s}
-.pick-card:hover .bg{transform:scale(1.04)}
-.pick-card .overlay{position:absolute;inset:0;background:linear-gradient(transparent 30%,rgba(0,0,0,.82))}
-.pick-card .content{position:absolute;bottom:0;left:0;right:0;padding:16px;color:#fff;z-index:2}
-.pick-card .content h3{font-family:var(--serif);font-size:20px;font-weight:400;color:#fff;margin:0 0 4px}
-.pick-card .score{position:absolute;top:12px;right:12px;background:rgba(0,0,0,.55);color:#fff;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:600;z-index:2}
-.pick-card .badge-pos{position:absolute;top:12px;left:12px;z-index:2}
-
-/* Gallery strip */
-.gallery-strip{display:flex;gap:10px;overflow-x:auto;padding-bottom:8px;margin:16px 0 20px;scroll-snap-type:x mandatory}
-.gallery-strip::-webkit-scrollbar{height:6px}
-.gallery-strip::-webkit-scrollbar-thumb{background:#ccc;border-radius:3px}
-.gslide{flex:0 0 220px;scroll-snap-align:start;border-radius:10px;overflow:hidden;position:relative}
-.gslide img{width:100%;height:150px;object-fit:cover;display:block;background:#ddd}
-.gslide span{position:absolute;bottom:0;left:0;right:0;padding:8px 10px;background:linear-gradient(transparent,rgba(0,0,0,.75));color:#fff;font-size:11px;font-weight:500}
-
-/* Option hero banner */
-.opt-hero{height:min(42vw,260px);border-radius:var(--r);background-size:cover;background-position:center;position:relative;margin-bottom:16px;overflow:hidden}
-.opt-hero .ov{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.55),transparent 60%)}
-.opt-hero .txt{position:absolute;bottom:0;left:0;padding:20px 24px;color:#fff;max-width:70%}
-.opt-hero .txt h2{color:#fff;margin:0;font-family:var(--serif);font-size:28px}
-.opt-hero .txt p{opacity:.9;font-size:14px;margin-top:4px}
+/* Option cards — primary navigation */
+.options{display:grid;gap:14px;margin-bottom:8px}
+@media(min-width:720px){.options{grid-template-columns:repeat(3,1fr)}}
+.opt-card{position:relative;border-radius:var(--r);overflow:hidden;cursor:pointer;min-height:260px;border:3px solid transparent;transition:transform .2s,border-color .2s,box-shadow .2s}
+.opt-card:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,0,0,.12)}
+.opt-card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.opt-card .bg{position:absolute;inset:0;background-size:cover;background-position:center}
+.opt-card .shade{position:absolute;inset:0;background:linear-gradient(transparent 35%,rgba(0,0,0,.8))}
+.opt-card .body{position:absolute;bottom:0;left:0;right:0;padding:16px;color:#fff;z-index:1}
+.opt-card .body h3{font-family:var(--serif);font-size:19px;font-weight:400;color:#fff;margin:0 0 4px}
+.opt-card .body p{font-size:13px;opacity:.92}
+.opt-card .score{position:absolute;top:12px;right:12px;background:rgba(0,0,0,.5);color:#fff;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:600;z-index:1}
+.opt-card .badge-wrap{position:absolute;top:12px;left:12px;z-index:1}
 
 .badge{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:4px 9px;border-radius:4px}
 .b-recommended{background:#dceee4;color:var(--accent)}
 .b-backup{background:#e8f0fa;color:var(--accent2)}
 .b-adventurous{background:#fdf4e3;color:var(--amber)}
+.b-type{background:#f0ede6;color:var(--muted)}
+
+/* Gallery */
+.gallery{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px;margin:0 0 20px;scroll-snap-type:x mandatory}
+.gallery::-webkit-scrollbar{height:5px}
+.gallery::-webkit-scrollbar-thumb{background:#ccc;border-radius:3px}
+.gslide{flex:0 0 200px;scroll-snap-align:start;border-radius:10px;overflow:hidden;position:relative}
+.gslide img{width:100%;height:140px;object-fit:cover;display:block;background:#e0ddd6}
+.gslide span{position:absolute;bottom:0;left:0;right:0;padding:8px;background:linear-gradient(transparent,rgba(0,0,0,.75));color:#fff;font-size:11px}
 
 .grid{display:grid;gap:14px}
-@media(min-width:700px){.grid-2{grid-template-columns:repeat(2,1fr)}.grid-3{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:640px){.grid-2{grid-template-columns:1fr 1fr}.grid-3{grid-template-columns:repeat(3,1fr)}}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px}
+.stat strong{font-size:18px;display:block;margin-top:2px}
+.score-bar{height:4px;background:#e8e6e0;border-radius:2px;margin-top:8px}
+.score-fill{height:100%;background:var(--accent);border-radius:2px}
 
-/* Activity cards with photos */
-.act-card{background:var(--card);border-radius:var(--r);border:1px solid var(--border);overflow:hidden}
-.act-card img{width:100%;height:160px;object-fit:cover;display:block;background:linear-gradient(135deg,#dceee4,#e8f0fa)}
-.act-card .body{padding:14px}
-.act-card h4{font-size:15px;margin-bottom:4px}
-.act-card .meta{font-size:12px;color:var(--muted)}
-.act-card .links{font-size:12px;margin-top:8px}
+.prose{font-size:14px;margin-bottom:16px}
+.prose.muted{color:var(--muted)}
 
-/* Lodging with thumb */
-.lodge{display:grid;grid-template-columns:96px 1fr;gap:12px;padding:12px;border:1px solid var(--border);border-radius:10px;margin-bottom:10px;background:var(--card);align-items:start}
-.lodge img{width:96px;height:72px;object-fit:cover;border-radius:8px;background:#e8e6e0}
+.act{background:var(--card);border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.act img{width:100%;height:150px;object-fit:cover;display:block;background:#e0ddd6}
+.act .inner{padding:14px}
+.act h4{font-size:15px;margin-bottom:4px}
+.meta{font-size:12px;color:var(--muted)}
+.links{font-size:12px;margin-top:8px}
+
+.lodge{display:grid;grid-template-columns:88px 1fr;gap:12px;padding:12px;border:1px solid var(--border);border-radius:10px;margin-bottom:8px;background:var(--card)}
+.lodge img{width:88px;height:66px;object-fit:cover;border-radius:8px;background:#e0ddd6}
 .lodge.s-book_now{border-color:var(--accent);background:#f8fcf9}
 .lodge.s-viable{border-color:var(--amber)}
 .lodge.s-needs_verification{border-style:dashed}
 
-/* Day timeline visual */
-.day-row{display:grid;gap:12px;margin-bottom:16px}
-@media(min-width:640px){.day-row.has-img{grid-template-columns:140px 1fr}}
-.day-thumb img{width:100%;height:100px;object-fit:cover;border-radius:10px;background:#ddd}
-@media(min-width:640px){.day-thumb img{height:100%;min-height:120px}}
-.timeline{border-left:3px solid var(--accent);padding-left:18px}
-.block{margin-bottom:16px}
-.block .time{font-size:11px;font-weight:700;color:var(--accent);text-transform:uppercase}
-.block h4{font-size:15px;margin:4px 0}
-.block p{font-size:13px;color:var(--muted)}
-
 .tabs{display:flex;gap:6px;margin:12px 0;flex-wrap:wrap}
-.tab{padding:8px 14px;border:1px solid var(--border);background:var(--card);border-radius:8px;font-size:13px;cursor:pointer;font-family:var(--font)}
+.tab{padding:7px 13px;border:1px solid var(--border);background:var(--card);border-radius:8px;font-size:13px;cursor:pointer;font-family:var(--font)}
 .tab.active{background:var(--text);color:#fff;border-color:var(--text)}
 .plan-panel{display:none}.plan-panel.active{display:block}
-.opt-panel{display:none}.opt-panel.active{display:block}
 
-table{width:100%;border-collapse:collapse;font-size:12px;background:var(--card);border-radius:var(--r);overflow:hidden;margin-top:16px}
-th,td{padding:8px 10px;border-bottom:1px solid var(--border);text-align:left}
-th{background:#ebe8e0;font-size:10px;text-transform:uppercase}
-#map{height:300px;border-radius:var(--r);margin:12px 0}
+.day{display:grid;gap:12px;margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+@media(min-width:600px){.day.has-img{grid-template-columns:120px 1fr}}
+.day img{width:100%;height:90px;object-fit:cover;border-radius:10px;background:#e0ddd6}
+@media(min-width:600px){.day.has-img img{height:100%;min-height:100px}}
+.timeline{border-left:3px solid var(--accent);padding-left:16px}
+.slot{margin-bottom:14px}
+.slot .when{font-size:11px;font-weight:700;color:var(--accent);text-transform:uppercase}
+.slot h4{font-size:14px;margin:4px 0}
+.slot p{font-size:13px;color:var(--muted)}
+
+.map{height:260px;border-radius:var(--r);margin:16px 0;border:1px solid var(--border)}
 .alert{background:#fdeee8;border-left:3px solid var(--warn);padding:10px 12px;border-radius:8px;font-size:13px;margin:8px 0}
 .review{font-size:13px;border-left:3px solid var(--accent2);padding:10px 14px;margin:8px 0;background:var(--card);border-radius:0 8px 8px 0}
 .review cite{display:block;font-size:11px;color:var(--muted);margin-top:4px}
-.score-row{display:flex;justify-content:space-between;font-size:12px}
-.score-bar{height:5px;background:#e8e6e0;border-radius:3px;margin:4px 0 12px}
-.score-fill{height:100%;background:var(--accent);border-radius:3px}
-.group-msg{background:var(--card);padding:14px;border-radius:var(--r);font-size:14px;border:1px solid var(--border)}
-.credits{font-size:10px;color:var(--muted);margin-top:8px}
-footer{margin-top:32px;font-size:11px;color:var(--muted)}
-.img-fallback{background:linear-gradient(135deg,#2d5a3d,#3d6a8c);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.7);font-size:12px}
+.group-msg{background:var(--card);padding:16px;border-radius:var(--r);font-size:14px;border:1px solid var(--border);white-space:pre-wrap}
+.credits{font-size:10px;color:var(--muted);margin:-12px 0 16px}
+footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--border);font-size:11px;color:var(--muted)}
+.img-fallback{background:linear-gradient(135deg,#2d5a3d,#3d6a8c);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.6);font-size:11px;min-height:66px}
+
+.detail{display:none}
+.detail.active{display:block}
+.detail-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:4px}
+.back{font-size:13px;color:var(--accent2);cursor:pointer;border:none;background:none;font-family:var(--font);padding:0}
+.back:hover{text-decoration:underline}
+.overview.active ~ .detail-zone .detail{display:none}
+.overview:not(.active) ~ .detail-zone .detail.active{display:block}
 </style>
 </head>
 <body>
@@ -116,182 +110,177 @@ footer{margin-top:32px;font-size:11px;color:var(--muted)}
 <script>
 const DATA = __TRIP_DATA__;
 const esc = s => String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const badgeCls = b => ({recommended:'b-recommended',backup:'b-backup',adventurous:'b-adventurous'}[b]||'b-backup');
-const imgTag = (url, alt, cls='') => url
-  ? `<img class="${cls}" src="${esc(url)}" alt="${esc(alt||'')}" loading="lazy" onerror="this.outerHTML='<div class=img-fallback ${cls}'>Photo</div>'">`
+const badge = b => ({recommended:'b-recommended',backup:'b-backup',adventurous:'b-adventurous'}[b]||'b-backup');
+const img = (url, alt, cls='') => url
+  ? `<img class="${cls}" src="${esc(url)}" alt="${esc(alt||'')}" loading="lazy" onerror="this.outerHTML='<div class=img-fallback ${cls}>Photo</div>'">`
   : `<div class="img-fallback ${cls}">No photo</div>`;
 
-function renderHero() {
+function hero() {
   const m = DATA.meta || {};
-  return `<div class="hero-top">
+  const t = m.travelers || {};
+  return `<header class="hero">
     <h1>${esc(m.title||'Trip Explorer')}</h1>
-    <div class="sub">${esc(m.dates||'')} · ${esc(m.origin||'')} · ${m.travelers?.adults||'?'} adults · min ${m.travelers?.beds_min||2} beds</div>
-    ${m.book_urgency?`<div class="urgency" style="margin-top:14px">⏰ ${esc(m.book_urgency)}</div>`:''}
-  </div>`;
+    <div class="meta">${esc(m.dates||'')} · ${esc(m.origin||'')} · ${t.adults||'?'} adults · ${t.beds_min||2}+ beds</div>
+    ${m.book_urgency ? `<div class="urgency">${esc(m.book_urgency)}</div>` : ''}
+  </header>`;
 }
 
-function renderVisualPicker() {
-  const opts = DATA.options||[];
-  return `<div class="section-label">Pick an option — tap to explore</div>
-  <div class="visual-picker">${opts.map(o=>`
-    <div class="pick-card" data-goto="${esc(o.id)}" style="${o.hero_image?'':""}">
+function optionCards() {
+  return `<div class="label">Choose a destination</div>
+  <div class="options" id="options">${(DATA.options||[]).map(o => `
+    <article class="opt-card" data-id="${esc(o.id)}">
       <div class="bg" style="background-image:url('${esc(o.hero_image||'')}')"></div>
-      <div class="overlay"></div>
-      ${o.scores?.overall?`<div class="score">${o.scores.overall.value}/5</div>`:''}
-      <div class="badge-pos"><span class="badge ${badgeCls(o.badge)}">${esc(o.badge||'')}</span></div>
-      <div class="content">
+      <div class="shade"></div>
+      ${o.scores?.overall ? `<div class="score">${o.scores.overall.value}/5</div>` : ''}
+      <div class="badge-wrap"><span class="badge ${badge(o.badge)}">${esc(o.badge||'')}</span></div>
+      <div class="body">
         <h3>${esc(o.name)}</h3>
         <p>${esc(o.tagline||'')}</p>
-        <p style="font-size:11px;margin-top:6px;opacity:.85">Fri ${esc(o.drive_friday?.hours||'?')} · ${esc(o.labor_day_risk||'')} risk</p>
+        <p style="font-size:11px;margin-top:6px;opacity:.85">Fri ${esc(o.drive_friday?.hours||'?')} · ${esc(o.labor_day_risk||'')} crowd risk</p>
       </div>
-    </div>`).join('')}</div>`;
+    </article>`).join('')}</div>`;
 }
 
-function renderGallery(o) {
-  const g = o.gallery||[];
-  if (!g.length && o.hero_image) g.push({url:o.hero_image,caption:o.name});
+function gallery(o) {
+  const g = [...(o.gallery||[])];
+  if (!g.length && o.hero_image) g.push({url:o.hero_image, caption:o.name});
   if (!g.length) return '';
-  return `<div class="section-label">Photo tour — ${esc(o.name)}</div>
-  <div class="gallery-strip">${g.map(x=>`
-    <div class="gslide">${imgTag(x.url,x.caption)}<span>${esc(x.caption||'')}</span></div>`).join('')}</div>
-  ${o.hero_credit?`<div class="credits">Photos: ${esc(o.hero_credit)} + linked sources</div>`:''}`;
+  return `<div class="gallery">${g.map(x => `
+    <div class="gslide">${img(x.url, x.caption)}<span>${esc(x.caption||'')}</span></div>`).join('')}</div>
+    ${o.hero_credit ? `<div class="credits">Photos: ${esc(o.hero_credit)}</div>` : ''}`;
 }
 
-function renderOption(o) {
-  const plans = o.day_plans||[];
-  const lodges = o.lodging||[];
-  const acts = o.activities||[];
-  const rc = o.reality_check||{};
-  return `<div class="opt-panel" id="panel-${esc(o.id)}">
-    <div class="opt-hero" style="background-image:url('${esc(o.hero_image||'')}')">
-      <div class="ov"></div>
-      <div class="txt">
-        <span class="badge ${badgeCls(o.badge)}">${esc(o.badge||'')}</span>
-        <h2>${esc(o.name)}</h2>
-        <p>${esc(o.tagline||'')}</p>
-      </div>
+function optionDetail(o) {
+  const plans = o.day_plans || [];
+  const score = o.scores?.overall?.value || 0;
+  return `<section class="detail" id="detail-${esc(o.id)}">
+    <div class="detail-head">
+      <h2>${esc(o.name)}</h2>
+      <button class="back" data-back>← All options</button>
     </div>
-    ${renderGallery(o)}
-    <div class="grid grid-3" style="margin-bottom:16px">
-      <div><div class="section-label">Friday drive</div><strong>${esc(o.drive_friday?.hours||'?')} hr</strong><p style="font-size:12px;color:var(--muted)">${esc(o.drive_friday?.note||'')}</p></div>
-      <div><div class="section-label">Monday return</div><strong>${esc(o.drive_monday?.hours||'?')} hr</strong></div>
-      <div><div class="section-label">Overall score</div><strong>${o.scores?.overall?.value||'—'}/5</strong><div class="score-bar"><div class="score-fill" style="width:${((o.scores?.overall?.value||0)/5)*100}%"></div></div></div>
+    <p class="prose muted">${esc(o.tagline||'')}</p>
+    ${gallery(o)}
+    <div class="grid grid-3">
+      <div class="stat"><div class="label">Friday drive</div><strong>${esc(o.drive_friday?.hours||'?')} hr</strong><div class="meta">${esc(o.drive_friday?.note||'')}</div></div>
+      <div class="stat"><div class="label">Monday return</div><strong>${esc(o.drive_monday?.hours||'?')} hr</strong><div class="meta">${esc(o.drive_monday?.note||'')}</div></div>
+      <div class="stat"><div class="label">Overall</div><strong>${score||'—'}/5</strong><div class="score-bar"><div class="score-fill" style="width:${(score/5)*100}%"></div></div></div>
     </div>
-    ${o.strengths?.length?`<p><strong>✓</strong> ${o.strengths.map(esc).join(' · ')}</p>`:''}
-    ${o.tradeoffs?.length?`<p style="margin-top:6px;color:var(--muted)"><strong>△</strong> ${o.tradeoffs.map(esc).join(' · ')}</p>`:''}
-    <div id="map-${esc(o.id)}" style="height:280px;border-radius:12px;margin:16px 0"></div>
+    ${o.strengths?.length ? `<p class="prose" style="margin-top:16px"><strong>Strengths:</strong> ${o.strengths.map(esc).join(' · ')}</p>` : ''}
+    ${o.tradeoffs?.length ? `<p class="prose muted"><strong>Tradeoffs:</strong> ${o.tradeoffs.map(esc).join(' · ')}</p>` : ''}
+    <div class="map" id="map-${esc(o.id)}"></div>
     <h3>Activities</h3>
-    <div class="grid grid-2">${acts.map(a=>`
-      <div class="act-card">
-        ${imgTag(a.image, a.name)}
-        <div class="body">
-          <span class="badge b-adventurous" style="margin-bottom:6px">${esc(a.type||'')}</span>
+    <div class="grid grid-2">${(o.activities||[]).map(a => `
+      <article class="act">
+        ${img(a.image, a.name)}
+        <div class="inner">
+          <span class="badge b-type">${esc(a.type||'activity')}</span>
           <h4>${esc(a.name)}</h4>
-          <div class="meta">${esc(a.duration||'')} ${a.distance_mi?`· ${a.distance_mi} mi`:''} · ${esc(a.crowd_level||'')}</div>
-          <div class="meta" style="margin-top:4px">${esc(a.parking||'')}</div>
-          <div class="links">${a.official_url?`<a href="${esc(a.official_url)}" target="_blank">Official ↗</a> `:''}${a.maps_url?`<a href="${esc(a.maps_url)}" target="_blank">Maps ↗</a>`:''}</div>
-          ${a.review_snippet?`<div class="review" style="margin-top:8px;font-size:12px;padding:8px">"${esc(a.review_snippet)}"</div>`:''}
+          <div class="meta">${[a.duration, a.distance_mi ? a.distance_mi+' mi' : '', a.crowd_level].filter(Boolean).map(esc).join(' · ')}</div>
+          ${a.parking ? `<div class="meta" style="margin-top:4px">${esc(a.parking)}</div>` : ''}
+          <div class="links">${a.official_url ? `<a href="${esc(a.official_url)}" target="_blank" rel="noopener">Official ↗</a> ` : ''}${a.maps_url ? `<a href="${esc(a.maps_url)}" target="_blank" rel="noopener">Maps ↗</a>` : ''}</div>
         </div>
-      </div>`).join('')}</div>
-    <h3>Lodging (${lodges.length}) — 2+ beds needed</h3>
-    ${lodges.map(l=>`
+      </article>`).join('')}</div>
+    <h3>Where to stay</h3>
+    ${(o.lodging||[]).map(l => `
       <div class="lodge s-${esc(l.status||'needs_verification')}">
-        ${imgTag(l.image, l.name)}
+        ${img(l.image, l.name)}
         <div>
           <strong>#${l.rank} ${esc(l.name)}</strong>
-          <div style="font-size:12px;color:var(--muted);margin-top:2px">${esc(l.location||'')} · ${esc(l.beds||'')} ${l.bed_fit==='green'?'✓ 2BR/beds':''}</div>
-          <div style="font-size:13px;margin-top:4px">${l.total_3_nights!=null?`<strong>$${l.total_3_nights}</strong> total · `:''}${l.per_person!=null?`$${l.per_person}/person · `:''}${esc(l.availability||'')}</div>
-          <div style="font-size:12px;margin-top:4px">${esc(l.pros||'')} ${l.cons?'· '+esc(l.cons):''}</div>
-          ${l.booking_url?`<div style="margin-top:6px"><a href="${esc(l.booking_url)}" target="_blank">Book ↗</a></div>`:''}
+          <div class="meta">${esc(l.location||'')} · ${esc(l.beds||'')}${l.bed_fit==='green'?' · ✓ bed fit':''}</div>
+          <div style="font-size:13px;margin-top:4px">${l.total_3_nights!=null?`<strong>$${l.total_3_nights}</strong> / 3 nights · `:''}${l.per_person!=null?`$${l.per_person}/person · `:''}${esc(l.availability||'')}</div>
+          ${l.pros||l.cons ? `<div class="meta" style="margin-top:4px">${esc(l.pros||'')}${l.cons?' · '+esc(l.cons):''}</div>` : ''}
+          ${l.booking_url ? `<div class="links"><a href="${esc(l.booking_url)}" target="_blank" rel="noopener">Book ↗</a></div>` : ''}
         </div>
       </div>`).join('')}
     <h3>Day plans</h3>
-    <div class="tabs" data-opt="${esc(o.id)}">${plans.map((p,i)=>`<button class="tab${i===0?' active':''}" data-plan="${esc(p.id)}">${esc(p.name)}</button>`).join('')}</div>
-    ${plans.map((p,i)=>`
+    <div class="tabs" data-opt="${esc(o.id)}">${plans.map((p,i) => `<button class="tab${i===0?' active':''}" data-plan="${esc(p.id)}">${esc(p.name)}</button>`).join('')}</div>
+    ${plans.map((p,i) => `
       <div class="plan-panel${i===0?' active':''}" id="plan-${esc(o.id)}-${esc(p.id)}">
-        <p style="font-size:13px;color:var(--muted);margin-bottom:14px">${esc(p.vibe||'')}</p>
-        ${(p.days||[]).map(d=>`
-          <div class="day-row${d.image?' has-img':''}">
-            ${d.image?`<div class="day-thumb">${imgTag(d.image, d.label)}</div>`:''}
+        ${p.vibe ? `<p class="prose muted">${esc(p.vibe)}</p>` : ''}
+        ${(p.days||[]).map(d => `
+          <div class="day${d.image?' has-img':''}">
+            ${d.image ? img(d.image, d.label) : ''}
             <div class="timeline">
-              <div class="block"><div class="time">${esc(d.label||'')}</div>
-              ${(d.blocks||[]).map(b=>`
+              <div class="slot"><div class="when">${esc(d.label||'')}</div>
+              ${(d.blocks||[]).map(b => `
                 <h4>${esc(b.time||'')} — ${esc(b.title||'')}</h4>
                 <p>${esc(b.activity||'')}</p>
-                <p style="font-size:12px">🚗 ${esc(b.drive_min||'?')} min · ⏱ ${esc(b.duration||'')} · 🅿️ ${esc(b.parking||'—')}</p>
-                ${b.backup?`<div class="alert">Plan B: ${esc(b.backup)}</div>`:''}
-                <div class="links" style="font-size:12px;margin-top:4px">${b.official_url?`<a href="${esc(b.official_url)}" target="_blank">Official ↗</a> `:''}${b.maps_url?`<a href="${esc(b.maps_url)}" target="_blank">Navigate ↗</a>`:''}</div>
+                <div class="meta">🚗 ${esc(b.drive_min||'?')} min · ⏱ ${esc(b.duration||'—')} · 🅿️ ${esc(b.parking||'—')}</div>
+                ${b.backup ? `<div class="alert">Plan B: ${esc(b.backup)}</div>` : ''}
+                <div class="links">${b.official_url ? `<a href="${esc(b.official_url)}" target="_blank" rel="noopener">Official ↗</a> ` : ''}${b.maps_url ? `<a href="${esc(b.maps_url)}" target="_blank" rel="noopener">Navigate ↗</a>` : ''}</div>
               `).join('')}
               </div>
             </div>
           </div>`).join('')}
       </div>`).join('')}
-    <h3>Reviews</h3>
-    ${(o.reviews||[]).map(r=>`<div class="review">"${esc(r.quote)}"<cite>— <a href="${esc(r.url)}" target="_blank">${esc(r.source)}</a></cite></div>`).join('')||'<p style="color:var(--muted)">No reviews.</p>'}
-    <h3>Labor Day reality check</h3>
-    <div class="alert">
-      ${rc.parking_targets?.length?`<p><strong>Parking:</strong> ${rc.parking_targets.map(esc).join('; ')}</p>`:''}
-      ${rc.reservations?.length?`<p><strong>Book:</strong> ${rc.reservations.map(esc).join('; ')}</p>`:''}
-      ${rc.safety?.length?`<p><strong>Safety:</strong> ${rc.safety.map(esc).join('; ')}</p>`:''}
-    </div>
-  </div>`;
+    ${(o.reviews||[]).length ? `<h3>Reviews</h3>${o.reviews.map(r => `<blockquote class="review">"${esc(r.quote)}"<cite>— <a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.source)}</a></cite></blockquote>`).join('')}` : ''}
+    ${o.reality_check && (o.reality_check.parking_targets?.length || o.reality_check.reservations?.length || o.reality_check.safety?.length) ? `
+      <h3>Holiday reality check</h3>
+      <div class="alert">
+        ${o.reality_check.parking_targets?.length ? `<p><strong>Parking:</strong> ${o.reality_check.parking_targets.map(esc).join('; ')}</p>` : ''}
+        ${o.reality_check.reservations?.length ? `<p><strong>Book ahead:</strong> ${o.reality_check.reservations.map(esc).join('; ')}</p>` : ''}
+        ${o.reality_check.safety?.length ? `<p><strong>Safety:</strong> ${o.reality_check.safety.map(esc).join('; ')}</p>` : ''}
+      </div>` : ''}
+  </section>`;
 }
 
 function initMaps() {
   (DATA.options||[]).forEach(o => {
     const el = document.getElementById('map-'+o.id);
-    if (!el || typeof L==='undefined') return;
-    const map = L.map(el,{scrollWheelZoom:false});
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OSM'}).addTo(map);
+    if (!el || typeof L === 'undefined') return;
+    const map = L.map(el, {scrollWheelZoom:false});
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution:'© OSM'}).addTo(map);
     const pts = [];
     (o.activities||[]).forEach(a => {
-      if (typeof a.lat==='number') { L.marker([a.lat,a.lng]).addTo(map).bindPopup(esc(a.name)); pts.push([a.lat,a.lng]); }
+      if (typeof a.lat === 'number') { L.marker([a.lat,a.lng]).addTo(map).bindPopup(esc(a.name)); pts.push([a.lat,a.lng]); }
     });
-    if (pts.length) map.fitBounds(pts,{padding:[30,30]});
-    else map.setView([39.2,-120.5],7);
+    if (pts.length) map.fitBounds(pts, {padding:[24,24]});
+    else map.setView([39.2,-120.5], 7);
   });
 }
 
-function showOpt(id) {
-  document.querySelectorAll('.opt-panel,.pick-card').forEach(el=>{
-    el.classList.remove('active');
-    if(el.dataset.goto===id) el.classList.add('active');
-  });
-  document.getElementById('panel-'+id)?.classList.add('active');
-  document.querySelectorAll('.nav-sticky button').forEach(b=>b.classList.toggle('active',b.dataset.opt===id));
-  document.getElementById('panel-'+id)?.scrollIntoView({behavior:'smooth',block:'start'});
+let overview = true;
+function showOverview(scroll) {
+  overview = true;
+  document.getElementById('overview').classList.add('active');
+  document.querySelectorAll('.detail').forEach(d => d.classList.remove('active'));
+  document.querySelectorAll('.opt-card').forEach(c => c.classList.remove('active'));
+  if (scroll) document.getElementById('overview').scrollIntoView({behavior:'smooth'});
 }
 
-function bindUI() {
-  document.querySelectorAll('[data-goto]').forEach(el=>{
-    el.style.cursor='pointer';
-    el.onclick=()=>showOpt(el.dataset.goto);
-  });
-  document.querySelectorAll('.nav-sticky button').forEach(b=>b.onclick=()=>showOpt(b.dataset.opt));
-  document.querySelectorAll('.tabs').forEach(bar=>{
-    const opt=bar.dataset.opt;
-    bar.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{
-      bar.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+function showOption(id, scroll=true) {
+  overview = false;
+  document.getElementById('overview').classList.remove('active');
+  document.querySelectorAll('.detail').forEach(d => d.classList.remove('active'));
+  document.querySelectorAll('.opt-card').forEach(c => c.classList.toggle('active', c.dataset.id === id));
+  document.getElementById('detail-'+id)?.classList.add('active');
+  if (scroll) document.getElementById('detail-'+id)?.scrollIntoView({behavior:'smooth', block:'start'});
+  setTimeout(() => { const m = window['_map_'+id]; if (m) m.invalidateSize(); }, 200);
+}
+
+function bind() {
+  document.querySelectorAll('.opt-card').forEach(c => c.onclick = () => showOption(c.dataset.id));
+  document.querySelectorAll('[data-back]').forEach(b => b.onclick = () => showOverview(true));
+  document.querySelectorAll('.tabs').forEach(bar => {
+    const opt = bar.dataset.opt;
+    bar.querySelectorAll('.tab').forEach(t => t.onclick = () => {
+      bar.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
       t.classList.add('active');
-      document.querySelectorAll(`[id^="plan-${opt}-"]`).forEach(p=>p.classList.remove('active'));
+      document.querySelectorAll(`[id^="plan-${opt}-"]`).forEach(p => p.classList.remove('active'));
       document.getElementById(`plan-${opt}-${t.dataset.plan}`)?.classList.add('active');
     });
   });
 }
 
-const navBtns = (DATA.options||[]).map(o=>`<button data-opt="${esc(o.id)}">${esc(o.name.replace(' & ',' / '))}</button>`).join('');
-document.getElementById('app').innerHTML = renderHero()
-  + `<div class="nav-sticky">${navBtns}</div>`
-  + renderVisualPicker()
-  + `<section id="details">${(DATA.options||[]).map(renderOption).join('')}</section>`
-  + (DATA.group_message?`<h2>Group message</h2><div class="group-msg">${esc(DATA.group_message)}</div>`:'')
-  + `<footer>Generated ${esc(DATA.meta?.generated_at||'')} · travel-agent</footer>`;
+document.getElementById('app').innerHTML =
+  hero() +
+  `<div id="overview" class="overview active">${optionCards()}</div>` +
+  `<div class="detail-zone">${(DATA.options||[]).map(optionDetail).join('')}</div>` +
+  (DATA.group_message ? `<h2>Group message</h2><div class="group-msg">${esc(DATA.group_message)}</div>` : '') +
+  `<footer>Generated ${esc(DATA.meta?.generated_at?.slice(0,10)||'')} · travel-agent</footer>`;
 
-if ((DATA.options||[]).length) {
-  showOpt(DATA.options[0].id);
-}
-bindUI();
-setTimeout(initMaps, 150);
+bind();
+setTimeout(initMaps, 120);
 </script>
 </body>
 </html>
