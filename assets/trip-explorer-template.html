@@ -17,32 +17,40 @@
   --shadow-md:0 8px 28px rgba(26,26,24,.1);
   --font:'DM Sans',system-ui,sans-serif;--serif:'Instrument Serif',Georgia,serif;
   --ease:cubic-bezier(.22,1,.36,1);
+  --bar-h:56px;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.55;-webkit-font-smoothing:antialiased}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.55;-webkit-font-smoothing:antialiased;padding-bottom:72px}
 a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
 .wrap{max-width:1040px;margin:0 auto;padding:var(--space-6) var(--space-4) var(--space-16)}
 
-.hero{background:linear-gradient(135deg,#1b5e3b,#1a3d52);color:#fff;border-radius:var(--radius-lg);padding:var(--space-10) var(--space-6);margin-bottom:var(--space-10);box-shadow:var(--shadow-md)}
+.hero{background:linear-gradient(135deg,#1b5e3b,#1a3d52);color:#fff;border-radius:var(--radius-lg);padding:var(--space-10) var(--space-6);margin-bottom:var(--space-4);box-shadow:var(--shadow-md)}
 .hero h1{font-family:var(--serif);font-size:clamp(2rem,5vw,2.75rem);font-weight:400;line-height:1.1}
 .hero .meta{opacity:.9;font-size:14px;margin-top:var(--space-2)}
 .urgency{background:var(--surface-warn);color:var(--warn);padding:var(--space-4);border-radius:var(--radius);margin-top:var(--space-4);font-size:13px;line-height:1.5}
+
+/* Sticky destination chrome */
+.chrome{position:sticky;top:0;z-index:90;background:rgba(240,237,230,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--hairline);margin:0 calc(-1 * var(--space-4)) var(--space-6);padding:var(--space-2) var(--space-4);display:flex;gap:var(--space-2);overflow-x:auto;scrollbar-width:none}
+.chrome::-webkit-scrollbar{display:none}
+.chip{flex-shrink:0;padding:8px 16px;border-radius:999px;font:600 13px/1 var(--font);cursor:pointer;background:var(--surface);border:none;box-shadow:var(--shadow-sm);color:var(--text);transition:background .2s var(--ease),color .2s var(--ease),box-shadow .2s var(--ease)}
+.chip:hover{box-shadow:var(--shadow-md)}
+.chip.active{background:var(--accent);color:#fff}
+.chip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 
 .section-head{margin:var(--space-10) 0 var(--space-4)}
 .section-head h2,.section-head h3{font-family:var(--serif);font-weight:400}
 .section-head h2{font-size:clamp(1.5rem,3vw,1.875rem)}
 .section-head h3{font-size:1.375rem}
 .section-deck{font-size:13px;color:var(--muted);margin-top:6px}
-
 .label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
 
-/* Option picker */
-.options{display:grid;gap:var(--space-4);margin-bottom:var(--space-2)}
+/* Option cards */
+.options{display:grid;gap:var(--space-4);margin-bottom:var(--space-6)}
 @media(min-width:720px){.options{grid-template-columns:repeat(3,1fr)}}
 .opt-card{position:relative;border-radius:var(--radius-lg);overflow:hidden;cursor:pointer;min-height:272px;transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
 .opt-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--accent);transform:scaleX(0);transition:transform .25s var(--ease)}
 .opt-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
-.opt-card.active::after{transform:scaleX(1)}
+.opt-card.active::after,.mode-weekend .opt-card[data-id].active::after{transform:scaleX(1)}
 .opt-card .bg{position:absolute;inset:0;background-size:cover;background-position:center}
 .opt-card .shade{position:absolute;inset:0;background:linear-gradient(transparent 38%,rgba(0,0,0,.82))}
 .opt-card .body{position:absolute;bottom:0;left:0;right:0;padding:var(--space-4);color:#fff;z-index:1}
@@ -53,6 +61,39 @@ a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
 .b-recommended{background:#dceee4;color:var(--accent)}
 .b-backup{background:#e8f0fa;color:#1e4d6b}
 .b-adventurous{background:#fdf4e3;color:#8a5a00}
+
+/* Compare table */
+.compare-wrap{overflow-x:auto;margin-bottom:var(--space-6);-webkit-overflow-scrolling:touch}
+.compare{width:100%;min-width:560px;border-collapse:collapse;font-size:13px}
+.compare th,.compare td{padding:var(--space-4);text-align:left;vertical-align:top;border-top:1px solid var(--hairline)}
+.compare thead th{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);border-top:none;padding-bottom:var(--space-2)}
+.compare thead th:not(:first-child){font-family:var(--serif);font-size:1.125rem;font-weight:400;text-transform:none;letter-spacing:0;color:var(--text);cursor:pointer}
+.compare thead th:not(:first-child):hover{color:var(--accent)}
+.compare tbody th{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);width:7.5rem;white-space:nowrap}
+.compare tbody td{cursor:pointer;transition:background .15s}
+.compare tbody tr:hover td{background:rgba(27,94,59,.04)}
+.compare .col-active{background:rgba(27,94,59,.06)}
+.mode-weekend #compare-panel{display:none}
+
+.group-msg{background:var(--surface);padding:var(--space-6);border-radius:var(--radius-lg);font-size:14px;line-height:1.6;white-space:pre-wrap;box-shadow:var(--shadow-sm);margin-bottom:var(--space-6)}
+
+/* Detail view */
+.mode-compare #detail-panel{display:none}
+.detail-head{margin-bottom:var(--space-4)}
+.detail-head h2{font-family:var(--serif);font-size:clamp(1.5rem,3vw,2rem);font-weight:400}
+.detail-zone .detail{display:none}
+.detail-zone .detail.active{display:block}
+
+/* Plan picker cards */
+.plan-cards{display:grid;gap:var(--space-4);margin:var(--space-6) 0}
+@media(min-width:640px){.plan-cards{grid-template-columns:repeat(3,1fr)}}
+.plan-card{padding:var(--space-4);background:var(--surface);border-radius:var(--radius);cursor:pointer;box-shadow:var(--shadow-sm);transition:box-shadow .2s var(--ease),transform .2s var(--ease);border-bottom:3px solid transparent}
+.plan-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.plan-card.active{border-bottom-color:var(--accent)}
+.plan-card h4{font-family:var(--serif);font-size:1.125rem;font-weight:400;margin-bottom:var(--space-2)}
+.plan-card .day-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:var(--space-2)}
+.plan-card .day-chip{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;padding:4px 8px;border-radius:4px;background:rgba(27,94,59,.08);color:var(--accent)}
+.plan-card .plan-vibe{font-size:12px;color:var(--muted);line-height:1.45}
 
 .gallery{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px;margin-bottom:var(--space-6);scroll-snap-type:x mandatory}
 .gslide{flex:0 0 210px;scroll-snap-align:start;border-radius:var(--radius);overflow:hidden;position:relative;box-shadow:var(--shadow-sm)}
@@ -72,7 +113,11 @@ a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
 
 .map{height:280px;border-radius:var(--radius-lg);margin:var(--space-6) 0;box-shadow:var(--shadow-sm);overflow:hidden}
 
-/* Lodging list */
+/* Lodging collapsed */
+.lodge-details summary{cursor:pointer;font-family:var(--serif);font-size:1.125rem;list-style:none;display:flex;justify-content:space-between;align-items:baseline;gap:var(--space-4);padding:var(--space-4) 0}
+.lodge-details summary::-webkit-details-marker{display:none}
+.lodge-details summary::after{content:'+';font-family:var(--font);font-size:18px;color:var(--muted)}
+.lodge-details[open] summary::after{content:'−'}
 .lodge-list{list-style:none}
 .lodge-row{display:grid;grid-template-columns:32px 1fr auto;grid-template-areas:"rank main price" "rank main cta";gap:4px var(--space-4);padding:var(--space-4) 0;align-items:start}
 .lodge-row+.lodge-row{border-top:1px solid var(--hairline)}
@@ -92,6 +137,7 @@ a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
 .lodge-cta{grid-area:cta;justify-self:end;align-self:center;padding:8px 16px;background:var(--accent);color:#fff;border-radius:8px;font-size:13px;font-weight:600;text-decoration:none}
 .lodge-cta:hover{text-decoration:none;filter:brightness(1.05)}
 .lodge-cta--ghost{background:transparent;color:var(--accent);box-shadow:inset 0 0 0 1px var(--hairline)}
+.lodge-more{font-size:13px;color:var(--accent);padding:var(--space-2) 0;cursor:pointer;background:none;border:none;font-family:var(--font)}
 @media(max-width:640px){
   .lodge-row{grid-template-columns:28px 1fr;grid-template-areas:"rank main" ". price" ". cta"}
   .lodge-price{text-align:left}.lodge-cta{justify-self:stretch;text-align:center}
@@ -99,20 +145,12 @@ a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
 
 /* Day itinerary — editorial */
 .itinerary{margin-top:var(--space-6)}
-.plan-switcher{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--space-6);margin-bottom:var(--space-6);padding-bottom:var(--space-4);border-bottom:1px solid var(--hairline)}
-.plan-btn{font:600 11px/1 var(--font);letter-spacing:.1em;text-transform:uppercase;background:none;border:none;border-bottom:2px solid transparent;color:var(--muted);padding:8px 2px;margin-bottom:calc(-1 * var(--space-4) - 1px);cursor:pointer;transition:color .2s,border-color .2s}
-.plan-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
-.plan-btn:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
-.plan-vibe{text-align:center;font-size:13px;color:var(--muted);margin:-8px 0 var(--space-6);max-width:36rem;margin-left:auto;margin-right:auto}
-.plan-panel{display:none}.plan-panel.active{display:block}
 .plan-empty{text-align:center;padding:var(--space-10) var(--space-4);color:var(--muted);font-size:14px}
-
 .day{max-width:42rem;margin:0 auto var(--space-10)}
 .day-masthead img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:2px;display:block;background:#e0ddd6;margin-bottom:0}
 .day-kicker{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:var(--space-6) 0 4px}
 .day-title{font-family:var(--serif);font-size:clamp(1.75rem,4vw,2.25rem);font-weight:400;line-height:1.15}
 .day-summary{font-size:14px;color:var(--muted);margin-top:6px}
-
 .schedule{list-style:none;margin-top:var(--space-6)}
 .block{display:grid;grid-template-columns:4.5rem 1fr;gap:0 var(--space-4);padding:var(--space-6) 0;border-top:1px solid var(--hairline);position:relative}
 .block__time{font-size:13px;font-weight:500;color:var(--muted);font-variant-numeric:tabular-nums;padding-top:2px}
@@ -126,20 +164,20 @@ a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
 .block__links a+a::before{content:' · ';color:var(--muted)}
 .block__backup{margin-top:var(--space-4);padding-left:12px;border-left:2px solid var(--accent);font-size:13px;color:var(--muted)}
 .backup-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:4px}
-
 @media(max-width:520px){
   .block{grid-template-columns:1fr}
   .block__time{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);margin-bottom:4px}
   .block__body{padding-left:14px}
 }
 
-/* Activities reference (collapsed) */
-.act-ref{margin-top:var(--space-6)}
-.act-ref summary{cursor:pointer;font-family:var(--serif);font-size:1.125rem;list-style:none;display:flex;justify-content:space-between;align-items:baseline;gap:var(--space-4);padding:var(--space-4) 0}
-.act-ref summary::-webkit-details-marker{display:none}
-.act-ref summary::after{content:'+';font-family:var(--font);font-size:18px;color:var(--muted)}
-.act-ref[open] summary::after{content:'−'}
-.summary-meta{font-family:var(--font);font-size:12px;color:var(--muted)}
+/* Collapsible extras in detail */
+.detail-extra{margin-top:var(--space-6)}
+.detail-extra summary{cursor:pointer;font-family:var(--serif);font-size:1.125rem;list-style:none;display:flex;justify-content:space-between;align-items:baseline;gap:var(--space-4);padding:var(--space-4) 0;border-top:1px solid var(--hairline)}
+.detail-extra summary::-webkit-details-marker{display:none}
+.detail-extra summary::after{content:'+';font-family:var(--font);font-size:18px;color:var(--muted)}
+.detail-extra[open] summary::after{content:'−'}
+
+.act-ref{margin-top:var(--space-2)}
 .act-list{list-style:none}
 .act-row{display:grid;grid-template-columns:72px 1fr;gap:12px var(--space-4);padding:var(--space-4) 0}
 .act-row+.act-row{border-top:1px solid var(--hairline)}
@@ -159,21 +197,23 @@ a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
 .reality p+p{margin-top:8px}
 .reality strong{font-weight:600;color:var(--text)}
 
-.group-msg{background:var(--surface);padding:var(--space-6);border-radius:var(--radius-lg);font-size:14px;line-height:1.6;white-space:pre-wrap;box-shadow:var(--shadow-sm)}
 .credits{font-size:10px;color:var(--muted);margin-top:-12px;margin-bottom:var(--space-4)}
 footer{margin-top:var(--space-16);font-size:11px;color:var(--muted)}
 .img-fallback{background:linear-gradient(135deg,#2d5a3d,#3d6a8c);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.55);font-size:11px;min-height:72px}
 
-.detail{display:none}.detail.active{display:block}
-.detail-head{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--space-4);margin-bottom:var(--space-2)}
-.back{font-size:13px;color:var(--accent);cursor:pointer;border:none;background:none;font-family:var(--font);padding:4px 0;white-space:nowrap}
-.back:hover{text-decoration:underline}
-.overview.active~.detail-zone .detail{display:none}
-.overview:not(.active)~.detail-zone .detail.active{display:block}
+/* Mobile bottom dock */
+.dock{position:fixed;bottom:0;left:0;right:0;z-index:100;display:flex;height:var(--bar-h);background:var(--surface);border-top:1px solid var(--hairline);box-shadow:0 -4px 20px rgba(26,26,24,.06)}
+.dock-btn{flex:1;display:flex;align-items:center;justify-content:center;font:600 13px/1 var(--font);color:var(--text);background:none;border:none;cursor:pointer;text-decoration:none}
+.dock-btn+.dock-btn{border-left:1px solid var(--hairline)}
+.dock-btn.active{color:var(--accent)}
+.dock-btn--map{color:var(--accent)}
+.dock-btn[disabled],.dock-btn--disabled{opacity:.35;pointer-events:none}
+@media(min-width:900px){.dock{display:none}body{padding-bottom:0}}
 </style>
 </head>
 <body>
 <div class="wrap" id="app"></div>
+<nav class="dock" id="dock" aria-label="Trip navigation"></nav>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
 const DATA = __TRIP_DATA__;
@@ -182,6 +222,9 @@ const badge = b => ({recommended:'b-recommended',backup:'b-backup',adventurous:'
 const img = (url, alt, cls='') => url
   ? `<img class="${cls}" src="${esc(url)}" alt="${esc(alt||'')}" loading="lazy" onerror="this.outerHTML='<div class=img-fallback ${cls}>Photo</div>'">`
   : '';
+
+const state = { mode: 'compare', optionId: null, planId: null };
+const maps = {};
 
 const fmtTime = t => {
   if (!t || t === '—') return '';
@@ -203,36 +246,84 @@ const daySummary = blocks => {
 
 const bedLine = l => {
   const fit = l.bed_fit;
-  const cls = fit==='green'?'lodge-beds--ok':fit==='yellow'?'lodge-beds--warn':'';
-  const note = fit==='green'?' · fits 3 adults':fit==='yellow'?' · verify bed layout':fit==='red'?' · may not fit group':'';
+  const cls = fit==='green'?'lodge-beds--ok':fit==='yellow'||fit==='needs_verification'?'lodge-beds--warn':'';
+  const note = fit==='green'?' · fits 3 adults':fit==='yellow'||fit==='needs_verification'?' · verify bed layout':fit==='red'?' · may not fit group':'';
   return `<p class="lodge-beds ${cls}"><strong>${esc(l.beds||'Beds TBD')}</strong>${note}</p>`;
 };
 
+function shortName(o) {
+  if (o.base_towns?.[0]) return o.base_towns[0];
+  const n = o.name || '';
+  if (/bucks lake/i.test(n)) return 'Bucks Lake';
+  if (/downieville/i.test(n)) return 'Downieville';
+  if (/nevada city/i.test(n)) return 'Nevada City';
+  return (n.split(/[&,]/)[0] || n).trim().slice(0, 18);
+}
+
+function bestStay(o) {
+  return (o.lodging || [])
+    .filter(l => l.total_3_nights != null)
+    .sort((a, b) => a.total_3_nights - b.total_3_nights)[0] || null;
+}
+
+function defaultPlanId(o) {
+  return (o.day_plans || [])[0]?.id || 'plan-a';
+}
+
+function getOption(id) {
+  return (DATA.options || []).find(o => o.id === id);
+}
+
 function hero() {
   const m = DATA.meta || {}, t = m.travelers || {};
-  const mapLink = m.trip_map_url ? `<p style="margin-top:14px"><a href="${esc(m.trip_map_url)}" style="color:#fff;text-decoration:underline">View recommended trip map →</a></p>` : '';
   return `<header class="hero">
     <h1>${esc(m.title||'Trip Explorer')}</h1>
     <div class="meta">${esc(m.dates||'')} · ${esc(m.origin||'')} · ${t.adults||'?'} adults · ${t.beds_min||2}+ beds</div>
     ${m.book_urgency?`<div class="urgency">${esc(m.book_urgency)}</div>`:''}
-    ${mapLink}
   </header>`;
 }
 
+function chromeBar() {
+  const opts = DATA.options || [];
+  return `<nav class="chrome" id="chrome" aria-label="Destinations">${opts.map(o => `
+    <button type="button" class="chip" data-chip="${esc(o.id)}">${esc(shortName(o))}</button>`).join('')}
+  </nav>`;
+}
+
 function optionCards() {
-  return `<p class="label">Choose a destination</p>
+  return `<p class="label">Step 1 · Pick a destination</p>
   <div class="options">${(DATA.options||[]).map(o=>`
-    <article class="opt-card" data-id="${esc(o.id)}">
+    <article class="opt-card" data-id="${esc(o.id)}" tabindex="0" role="button" aria-label="Explore ${esc(shortName(o))}">
       <div class="bg" style="background-image:url('${esc(o.hero_image||'')}')"></div>
       <div class="shade"></div>
       ${o.scores?.overall?`<div class="score">${o.scores.overall.value}/5</div>`:''}
       <div class="body">
         <span class="badge ${badge(o.badge)}">${esc(o.badge||'')}</span>
-        <h3>${esc(o.name)}</h3>
+        <h3>${esc(shortName(o))}</h3>
         <p>${esc(o.tagline||'')}</p>
         <p style="font-size:11px;margin-top:6px;opacity:.85">Fri ${esc(o.drive_friday?.hours||'?')} · ${esc(o.labor_day_risk||'')} crowd</p>
       </div>
     </article>`).join('')}</div>`;
+}
+
+function compareTable() {
+  const opts = DATA.options || [];
+  const rows = [
+    { key: 'best', label: 'Best for', val: o => (o.strengths||[])[0] || o.tagline || '—' },
+    { key: 'fri', label: 'Fri drive', val: o => `${o.drive_friday?.hours||'?'} hr` },
+    { key: 'mon', label: 'Mon drive', val: o => `${o.drive_monday?.hours||'?'} hr` },
+    { key: 'crowd', label: 'Crowd risk', val: o => o.labor_day_risk ? `${o.labor_day_risk}${o.labor_day_risk_note?` — ${o.labor_day_risk_note.slice(0,60)}…`:''}` : '—' },
+    { key: 'stay', label: 'Stay from', val: o => { const s = bestStay(o); return s ? `$${s.total_3_nights} · ${s.name.split(/[,|]/)[0].trim().slice(0,28)}` : 'TBD'; } },
+    { key: 'catch', label: 'The catch', val: o => (o.tradeoffs||[])[0] || o.labor_day_risk_note?.slice(0,80) || '—' },
+  ];
+  return `<header class="section-head"><h2>Compare at a glance</h2><p class="section-deck">Tap a column or row to drill into one destination</p></header>
+  <div class="compare-wrap"><table class="compare" role="grid">
+    <thead><tr><th scope="col"></th>${opts.map(o=>`<th scope="col" data-opt="${esc(o.id)}">${esc(shortName(o))}</th>`).join('')}</tr></thead>
+    <tbody>${rows.map(r=>`<tr data-row="${r.key}">
+      <th scope="row">${esc(r.label)}</th>
+      ${opts.map(o=>`<td data-opt="${esc(o.id)}">${esc(r.val(o))}</td>`).join('')}
+    </tr>`).join('')}
+    </tbody></table></div>`;
 }
 
 function gallery(o) {
@@ -262,174 +353,303 @@ function renderDay(d, i) {
             ${b.parking && b.parking!=='—'?`<span><strong>Parking</strong> ${esc(b.parking)}</span>`:''}
           </div>
           ${b.official_url||b.maps_url?`<div class="block__links">${b.official_url?`<a href="${esc(b.official_url)}" target="_blank" rel="noopener">Official site</a>`:''}${b.maps_url?`<a href="${esc(b.maps_url)}" target="_blank" rel="noopener">Directions</a>`:''}</div>`:''}
-          ${b.backup && b.backup!=='—'?`<aside class="block__backup"><p class="backup-label">Plan B</p><p>${esc(b.backup)}</p></aside>`:''}
+          ${b.backup && b.backup!=='—'?`<aside class="block__backup"><p class="backup-label">If this fills</p><p>${esc(b.backup)}</p></aside>`:''}
         </div>
       </li>`).join('')}
     </ol>
   </article>`;
 }
 
-function renderItinerary(o) {
+function renderPlanCards(o, planId) {
   const plans = o.day_plans || [];
   if (!plans.length) return '';
-  const hasDays = plans.some(p => (p.days||[]).length);
-  return `<section class="itinerary" id="itinerary-${esc(o.id)}">
-    <header class="section-head">
-      <h3>Itinerary</h3>
-      <p class="section-deck">Day-by-day schedule · ${plans.length} plan variant${plans.length>1?'s':''}</p>
-    </header>
-    <nav class="plan-switcher" aria-label="Plan variants">${plans.map((p,i)=>`
-      <button type="button" class="plan-btn${i===0?' active':''}" data-opt="${esc(o.id)}" data-plan="${esc(p.id)}" aria-pressed="${i===0}">${esc(p.name)}</button>`).join('')}
-    </nav>
-    ${plans.map((p,i)=>`
-      <div class="plan-panel${i===0?' active':''}" id="plan-${esc(o.id)}-${esc(p.id)}">
+  return `<header class="section-head"><h3>Step 2 · Pick an itinerary</h3>
+    <p class="section-deck">${plans.length} plan variant${plans.length>1?'s':''} · day-by-day schedule</p></header>
+    <div class="plan-cards" data-opt="${esc(o.id)}">${plans.map(p=>{
+      const days = p.days || [];
+      const chips = days.length
+        ? days.map(d => `<span class="day-chip">${esc((d.label||'Day').replace(/,.*/,'').trim())}</span>`).join('')
+        : `<span class="day-chip">TBD</span>`;
+      return `<article class="plan-card${p.id===planId?' active':''}" data-plan="${esc(p.id)}" tabindex="0" role="button">
+        <h4>${esc(p.name)}</h4>
+        <div class="day-chips">${chips}</div>
         ${p.vibe?`<p class="plan-vibe">${esc(p.vibe)}</p>`:''}
-        ${(p.days||[]).length ? (p.days||[]).map(renderDay).join('') : `<div class="plan-empty">Full day-by-day schedule for this variant is still being researched.<br>${p.vibe?esc(p.vibe):'Check back after booking.'}</div>`}
-      </div>`).join('')}
+      </article>`;
+    }).join('')}</div>`;
+}
+
+function renderItineraryDays(o, planId) {
+  const plan = (o.day_plans||[]).find(p => p.id === planId) || (o.day_plans||[])[0];
+  if (!plan) return '';
+  const days = plan.days || [];
+  return `<section class="itinerary" id="itinerary-${esc(o.id)}">
+    ${days.length
+      ? days.map(renderDay).join('')
+      : `<div class="plan-empty">Full day-by-day schedule for this variant is still being researched.<br>${plan.vibe?esc(plan.vibe):'Check back after booking.'}</div>`}
   </section>`;
 }
 
-function renderLodging(o) {
+function lodgeRow(l, pick) {
+  const ctaCls = 'lodge-cta lodge-cta--ghost';
+  return `<li class="lodge-row${pick?' lodge-row--pick':''}">
+    <span class="lodge-rank" aria-hidden="true">${l.rank}</span>
+    <div class="lodge-main">
+      <div class="lodge-title">
+        <h4>${l.booking_url?`<a href="${esc(l.booking_url)}" target="_blank" rel="noopener">${esc(l.name)}</a>`:esc(l.name)}</h4>
+        ${pick?`<span class="lodge-status">Top pick</span>`:''}
+      </div>
+      <p class="lodge-meta">${esc(l.location||'')} · ${esc(l.platform||l.type||'')}</p>
+      ${bedLine(l)}
+      ${l.pros?`<p class="lodge-note">${esc(l.pros)}${l.cons?' · '+esc(l.cons):''}</p>`:''}
+    </div>
+    <div class="lodge-price">
+      ${l.total_3_nights!=null?`<span class="lodge-total">$${l.total_3_nights}</span><span class="lodge-pp">3 nights${l.per_person!=null?` · $${l.per_person}/person`:''}</span>`:''}
+    </div>
+    ${l.booking_url?`<a class="${ctaCls}" href="${esc(l.booking_url)}" target="_blank" rel="noopener">View</a>`:''}
+  </li>`;
+}
+
+function renderLodgingCollapsed(o) {
   const rows = o.lodging || [];
   if (!rows.length) return '';
-  return `<section>
-    <header class="section-head"><h3>Where to stay</h3>
-      <p class="section-deck">${DATA.meta?.travelers?.adults||3} adults · ${DATA.meta?.travelers?.beds_min||2}+ beds required</p>
-    </header>
-    <ol class="lodge-list">${rows.map(l=>{
-      const pick = l.rank===1;
-      const ctaCls = 'lodge-cta lodge-cta--ghost';
-      const ctaLabel = 'View';
-      return `<li class="lodge-row${pick?' lodge-row--pick':''}">
-        <span class="lodge-rank" aria-hidden="true">${l.rank}</span>
-        <div class="lodge-main">
-          <div class="lodge-title">
-            <h4>${l.booking_url?`<a href="${esc(l.booking_url)}" target="_blank" rel="noopener">${esc(l.name)}</a>`:esc(l.name)}</h4>
-            ${pick?`<span class="lodge-status">Top pick</span>`:''}
-          </div>
-          <p class="lodge-meta">${esc(l.location||'')} · ${esc(l.platform||l.type||'')}</p>
-          ${bedLine(l)}
-          ${l.pros?`<p class="lodge-note">${esc(l.pros)}${l.cons?' · '+esc(l.cons):''}</p>`:''}
-        </div>
-        <div class="lodge-price">
-          ${l.total_3_nights!=null?`<span class="lodge-total">$${l.total_3_nights}</span><span class="lodge-pp">3 nights${l.per_person!=null?` · $${l.per_person}/person`:''}</span>`:''}
-        </div>
-        ${l.booking_url?`<a class="${ctaCls}" href="${esc(l.booking_url)}" target="_blank" rel="noopener">${ctaLabel}</a>`:''}
-      </li>`;
-    }).join('')}</ol>
-  </section>`;
-}
-
-function renderActivities(o, openDefault) {
-  const acts = o.activities || [];
-  if (!acts.length) return '';
-  const open = openDefault ? ' open' : '';
-  return `<details class="act-ref"${open}>
-    <summary><span>Activity reference</span><span class="summary-meta">${acts.length} stops · distances · crowd levels</span></summary>
-    <ul class="act-list">${acts.map(a=>`
-      <li class="act-row">
-        ${a.image?img(a.image,a.name):'<div class="img-fallback" style="width:72px;height:72px;border-radius:8px">—</div>'}
-        <div>
-          <div class="act-kicker">
-            ${a.day?`<span class="act-day">${esc(a.day)}</span>`:''}
-            <span>${esc(a.type||'activity')}</span>
-            ${a.crowd_level?`<span>${esc(a.crowd_level)} crowd</span>`:''}
-          </div>
-          <div class="act-name">${esc(a.name)}</div>
-          <div class="act-meta">${[a.duration,a.distance_mi?a.distance_mi+' mi':'',a.parking].filter(Boolean).map(esc).join(' · ')}</div>
-          <div class="act-links">${a.official_url?`<a href="${esc(a.official_url)}" target="_blank" rel="noopener">Official</a>`:''}${a.maps_url?`<a href="${esc(a.maps_url)}" target="_blank" rel="noopener">Maps</a>`:''}</div>
-        </div>
-      </li>`).join('')}</ul>
+  const top2 = rows.slice(0, 2);
+  const rest = rows.slice(2);
+  const t = DATA.meta?.travelers || {};
+  return `<details class="lodge-details detail-extra">
+    <summary><span>Where to stay</span><span class="label">${t.adults||3} adults · ${t.beds_min||2}+ beds</span></summary>
+    <ol class="lodge-list">${top2.map(l => lodgeRow(l, l.rank===1)).join('')}</ol>
+    ${rest.length?`<details><summary class="lodge-more" style="list-style:none">+ ${rest.length} more stay${rest.length>1?'s':''}</summary>
+      <ol class="lodge-list">${rest.map(l => lodgeRow(l, false)).join('')}</ol>
+    </details>`:''}
   </details>`;
 }
 
-function optionDetail(o) {
+function renderActivities(o) {
+  const acts = o.activities || [];
+  if (!acts.length) return '';
+  return `<ul class="act-list">${acts.map(a=>`
+    <li class="act-row">
+      ${a.image?img(a.image,a.name):'<div class="img-fallback" style="width:72px;height:72px;border-radius:8px">—</div>'}
+      <div>
+        <div class="act-kicker">
+          ${a.day?`<span class="act-day">${esc(a.day)}</span>`:''}
+          <span>${esc(a.type||'activity')}</span>
+          ${a.crowd_level?`<span>${esc(a.crowd_level)} crowd</span>`:''}
+        </div>
+        <div class="act-name">${esc(a.name)}</div>
+        <div class="act-meta">${[a.duration,a.distance_mi?a.distance_mi+' mi':'',a.parking].filter(Boolean).map(esc).join(' · ')}</div>
+        <div class="act-links">${a.official_url?`<a href="${esc(a.official_url)}" target="_blank" rel="noopener">Official</a>`:''}${a.maps_url?`<a href="${esc(a.maps_url)}" target="_blank" rel="noopener">Maps</a>`:''}</div>
+      </div>
+    </li>`).join('')}</ul>`;
+}
+
+function optionDetail(o, planId) {
   const score = o.scores?.overall?.value || 0;
-  const hasItinerary = (o.day_plans||[]).some(p=>(p.days||[]).length);
-  return `<section class="detail" id="detail-${esc(o.id)}">
+  const pid = planId || defaultPlanId(o);
+  return `<section class="detail" id="detail-${esc(o.id)}" data-opt="${esc(o.id)}">
     <div class="detail-head">
-      <div><h2>${esc(o.name)}</h2><p class="prose muted" style="margin:4px 0 0">${esc(o.tagline||'')}</p></div>
-      <button class="back" data-back type="button">← All options</button>
+      <div>
+        <p class="label">Step 2 · ${esc(shortName(o))}</p>
+        <h2>${esc(o.name)}</h2>
+        <p class="prose muted" style="margin:4px 0 0">${esc(o.tagline||'')}</p>
+      </div>
     </div>
-    ${gallery(o)}
-    <div class="stats">
-      <div class="stat"><span class="label">Friday drive</span><strong>${esc(o.drive_friday?.hours||'?')} hr</strong><span class="prose muted" style="margin:4px 0 0;font-size:12px">${esc(o.drive_friday?.note||'')}</span></div>
-      <div class="stat"><span class="label">Monday return</span><strong>${esc(o.drive_monday?.hours||'?')} hr</strong><span class="prose muted" style="margin:4px 0 0;font-size:12px">${esc(o.drive_monday?.note||'')}</span></div>
-      <div class="stat"><span class="label">Overall</span><strong>${score||'—'}/5</strong><div class="score-bar"><div class="score-fill" style="width:${(score/5)*100}%"></div></div></div>
-    </div>
-    ${o.strengths?.length?`<p class="prose"><strong>Strengths:</strong> ${o.strengths.map(esc).join(' · ')}</p>`:''}
-    ${o.tradeoffs?.length?`<p class="prose muted"><strong>Tradeoffs:</strong> ${o.tradeoffs.map(esc).join(' · ')}</p>`:''}
-    <div class="map" id="map-${esc(o.id)}"></div>
-    ${renderLodging(o)}
-    ${renderItinerary(o)}
-    ${renderActivities(o, !hasItinerary)}
-    ${(o.reviews||[]).length?`<header class="section-head"><h3>What travelers say</h3></header>${o.reviews.map(r=>`<blockquote class="review"><p>${esc(r.quote)}</p><cite><a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.source)}</a></cite></blockquote>`).join('')}`:''}
+    ${renderPlanCards(o, pid)}
+    <div class="itinerary-zone" id="itinerary-zone-${esc(o.id)}">${renderItineraryDays(o, pid)}</div>
+    ${renderLodgingCollapsed(o)}
+    <details class="detail-extra">
+      <summary><span>Map &amp; photos</span></summary>
+      ${gallery(o)}
+      <div class="map" id="map-${esc(o.id)}"></div>
+    </details>
+    ${(o.reviews||[]).length?`<details class="detail-extra">
+      <summary><span>What travelers say</span><span class="label">${o.reviews.length} review${o.reviews.length>1?'s':''}</span></summary>
+      ${o.reviews.map(r=>`<blockquote class="review"><p>${esc(r.quote)}</p><cite><a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.source)}</a></cite></blockquote>`).join('')}
+    </details>`:''}
     ${o.reality_check&&(o.reality_check.parking_targets?.length||o.reality_check.reservations?.length||o.reality_check.safety?.length)?`
-      <header class="section-head"><h3>Before you go</h3></header>
+    <details class="detail-extra">
+      <summary><span>Before you go</span></summary>
       <div class="reality">
         ${o.reality_check.parking_targets?.length?`<p><strong>Parking:</strong> ${o.reality_check.parking_targets.map(esc).join('; ')}</p>`:''}
         ${o.reality_check.reservations?.length?`<p><strong>Book ahead:</strong> ${o.reality_check.reservations.map(esc).join('; ')}</p>`:''}
         ${o.reality_check.safety?.length?`<p><strong>Safety:</strong> ${o.reality_check.safety.map(esc).join('; ')}</p>`:''}
-      </div>`:''}
+      </div>
+    </details>`:''}
+    <details class="detail-extra act-ref">
+      <summary><span>Activity reference</span><span class="label">${(o.activities||[]).length} stops</span></summary>
+      ${renderActivities(o)}
+    </details>
+    <div class="stats" style="margin-top:var(--space-6)">
+      <div class="stat"><span class="label">Friday drive</span><strong>${esc(o.drive_friday?.hours||'?')} hr</strong></div>
+      <div class="stat"><span class="label">Monday return</span><strong>${esc(o.drive_monday?.hours||'?')} hr</strong></div>
+      <div class="stat"><span class="label">Overall</span><strong>${score||'—'}/5</strong><div class="score-bar"><div class="score-fill" style="width:${(score/5)*100}%"></div></div></div>
+    </div>
+    ${o.strengths?.length?`<p class="prose"><strong>Strengths:</strong> ${o.strengths.map(esc).join(' · ')}</p>`:''}
+    ${o.tradeoffs?.length?`<p class="prose muted"><strong>Tradeoffs:</strong> ${o.tradeoffs.map(esc).join(' · ')}</p>`:''}
   </section>`;
 }
 
-function initMaps() {
-  (DATA.options||[]).forEach(o => {
-    const el = document.getElementById('map-'+o.id);
-    if (!el || typeof L==='undefined') return;
-    const map = L.map(el,{scrollWheelZoom:false});
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OSM'}).addTo(map);
-    const pts = [];
-    (o.activities||[]).forEach(a => {
-      if (typeof a.lat==='number') { L.marker([a.lat,a.lng]).addTo(map).bindPopup(esc(a.name)); pts.push([a.lat,a.lng]); }
-    });
-    if (pts.length) map.fitBounds(pts,{padding:[28,28]});
-    else map.setView([39.2,-120.5],7);
+function dockBar() {
+  const mapUrl = DATA.meta?.trip_map_url;
+  return `<button type="button" class="dock-btn" data-dock="compare">Compare</button>
+    ${mapUrl
+      ? `<a class="dock-btn dock-btn--map" href="${esc(mapUrl)}" target="_blank" rel="noopener">Trip map</a>`
+      : `<span class="dock-btn dock-btn--disabled" aria-disabled="true">Trip map</span>`}`;
+}
+
+function parseHash() {
+  const raw = (location.hash || '').replace(/^#/, '');
+  if (!raw || raw === 'compare') return { mode: 'compare', optionId: null, planId: null };
+  const parts = raw.split('/');
+  const optionId = parts[0] || null;
+  const o = getOption(optionId);
+  if (!o) return { mode: 'compare', optionId: null, planId: null };
+  const planId = parts[1] || defaultPlanId(o);
+  const validPlan = (o.day_plans||[]).some(p => p.id === planId);
+  return { mode: 'weekend', optionId, planId: validPlan ? planId : defaultPlanId(o) };
+}
+
+function syncHash() {
+  let hash = 'compare';
+  if (state.mode === 'weekend' && state.optionId) {
+    hash = state.optionId;
+    if (state.planId && state.planId !== defaultPlanId(getOption(state.optionId))) hash += '/' + state.planId;
+    else if (state.planId) hash += '/' + state.planId;
+  }
+  const next = '#' + hash;
+  if (location.hash !== next) history.replaceState(null, '', next);
+}
+
+function initMap(o) {
+  const el = document.getElementById('map-' + o.id);
+  if (!el || typeof L === 'undefined' || maps[o.id]) return;
+  const map = L.map(el, { scrollWheelZoom: false });
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OSM' }).addTo(map);
+  const pts = [];
+  (o.activities || []).forEach(a => {
+    if (typeof a.lat === 'number') { L.marker([a.lat, a.lng]).addTo(map).bindPopup(esc(a.name)); pts.push([a.lat, a.lng]); }
+  });
+  if (pts.length) map.fitBounds(pts, { padding: [28, 28] });
+  else map.setView([39.2, -120.5], 7);
+  maps[o.id] = map;
+}
+
+function refreshPlanUI(o, planId) {
+  const zone = document.getElementById('itinerary-zone-' + o.id);
+  if (zone) zone.innerHTML = renderItineraryDays(o, planId);
+  document.querySelectorAll(`.plan-cards[data-opt="${o.id}"] .plan-card`).forEach(c => {
+    c.classList.toggle('active', c.dataset.plan === planId);
   });
 }
 
-function showOverview(scroll) {
-  document.getElementById('overview').classList.add('active');
-  document.querySelectorAll('.detail').forEach(d=>d.classList.remove('active'));
-  document.querySelectorAll('.opt-card').forEach(c=>c.classList.remove('active'));
-  if (scroll) document.getElementById('overview').scrollIntoView({behavior:'smooth'});
+function applyState(scroll) {
+  document.body.classList.toggle('mode-compare', state.mode === 'compare');
+  document.body.classList.toggle('mode-weekend', state.mode === 'weekend');
+
+  document.querySelectorAll('.chip').forEach(chip => {
+    const on = state.mode === 'weekend' && chip.dataset.chip === state.optionId;
+    chip.classList.toggle('active', on);
+  });
+
+  document.querySelectorAll('.opt-card').forEach(c => {
+    c.classList.toggle('active', state.mode === 'weekend' && c.dataset.id === state.optionId);
+  });
+
+  document.querySelectorAll('.compare thead th[data-opt], .compare td[data-opt]').forEach(cell => {
+    cell.classList.toggle('col-active', state.mode === 'weekend' && cell.dataset.opt === state.optionId);
+  });
+
+  document.querySelectorAll('.detail').forEach(d => {
+    d.classList.toggle('active', state.mode === 'weekend' && d.dataset.opt === state.optionId);
+  });
+
+  document.querySelectorAll('.dock-btn[data-dock="compare"]').forEach(b => {
+    b.classList.toggle('active', state.mode === 'compare');
+  });
+
+  if (state.mode === 'weekend' && state.optionId) {
+    const o = getOption(state.optionId);
+    if (o) {
+      refreshPlanUI(o, state.planId || defaultPlanId(o));
+      setTimeout(() => {
+        initMap(o);
+        maps[o.id]?.invalidateSize();
+      }, 200);
+      if (scroll) document.getElementById('detail-' + state.optionId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  } else if (scroll) {
+    document.getElementById('compare-panel')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  syncHash();
 }
 
-function showOption(id, scroll=true) {
-  document.getElementById('overview').classList.remove('active');
-  document.querySelectorAll('.detail').forEach(d=>d.classList.remove('active'));
-  document.querySelectorAll('.opt-card').forEach(c=>c.classList.toggle('active',c.dataset.id===id));
-  document.getElementById('detail-'+id)?.classList.add('active');
-  if (scroll) document.getElementById('detail-'+id)?.scrollIntoView({behavior:'smooth',block:'start'});
-  setTimeout(()=>{document.getElementById('map-'+id)?._leaflet_id&&L.DomUtil.get(document.getElementById('map-'+id))?window.dispatchEvent(new Event('resize')):null},250);
+function goCompare(scroll) {
+  state.mode = 'compare';
+  state.optionId = null;
+  state.planId = null;
+  applyState(scroll);
+}
+
+function goOption(optionId, planId, scroll) {
+  const o = getOption(optionId);
+  if (!o) return;
+  state.mode = 'weekend';
+  state.optionId = optionId;
+  state.planId = planId || defaultPlanId(o);
+  applyState(scroll);
+}
+
+function goPlan(planId) {
+  if (state.mode !== 'weekend' || !state.optionId) return;
+  state.planId = planId;
+  applyState(false);
+  syncHash();
 }
 
 function bind() {
-  document.querySelectorAll('.opt-card').forEach(c=>c.onclick=()=>showOption(c.dataset.id));
-  document.querySelectorAll('[data-back]').forEach(b=>b.onclick=()=>showOverview(true));
-  document.querySelectorAll('.plan-btn').forEach(btn=>{
-    btn.onclick=()=>{
-      const opt=btn.dataset.opt, plan=btn.dataset.plan;
-      document.querySelectorAll(`.plan-btn[data-opt="${opt}"]`).forEach(b=>{
-        b.classList.toggle('active',b===btn);
-        b.setAttribute('aria-pressed',b===btn);
-      });
-      document.querySelectorAll(`[id^="plan-${opt}-"]`).forEach(p=>p.classList.remove('active'));
-      document.getElementById(`plan-${opt}-${plan}`)?.classList.add('active');
-    };
+  document.querySelectorAll('.chip').forEach(chip => {
+    chip.onclick = () => goOption(chip.dataset.chip, null, true);
+  });
+
+  document.querySelectorAll('.opt-card').forEach(c => {
+    const open = () => goOption(c.dataset.id, null, true);
+    c.onclick = open;
+    c.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } };
+  });
+
+  document.querySelectorAll('.compare [data-opt]').forEach(cell => {
+    cell.onclick = () => goOption(cell.dataset.opt, null, true);
+  });
+
+  document.addEventListener('click', e => {
+    const card = e.target.closest('.plan-card');
+    if (!card) return;
+    const wrap = card.closest('.plan-cards');
+    if (!wrap) return;
+    goPlan(card.dataset.plan);
+  });
+
+  document.querySelector('[data-dock="compare"]')?.addEventListener('click', () => goCompare(true));
+
+  window.addEventListener('hashchange', () => {
+    Object.assign(state, parseHash());
+    applyState(false);
   });
 }
 
-document.getElementById('app').innerHTML=
-  hero()+
-  `<div id="overview" class="overview active">${optionCards()}</div>`+
-  `<div class="detail-zone">${(DATA.options||[]).map(optionDetail).join('')}</div>`+
-  (DATA.group_message?`<header class="section-head"><h2>Group message</h2></header><div class="group-msg">${esc(DATA.group_message)}</div>`:'')+
+document.getElementById('app').innerHTML =
+  hero() +
+  chromeBar() +
+  `<div id="compare-panel">${optionCards()}${compareTable()}${DATA.group_message?`<header class="section-head"><h2>Group message</h2></header><div class="group-msg">${esc(DATA.group_message)}</div>`:''}</div>` +
+  `<div id="detail-panel" class="detail-zone">${(DATA.options||[]).map(o => optionDetail(o, defaultPlanId(o))).join('')}</div>` +
   `<footer>Generated ${esc(DATA.meta?.generated_at?.slice(0,10)||'')} · travel-agent</footer>`;
 
+document.getElementById('dock').innerHTML = dockBar();
+
+Object.assign(state, parseHash());
 bind();
-setTimeout(initMaps,150);
+applyState(false);
 </script>
 </body>
 </html>
