@@ -223,7 +223,7 @@ Do NOT research until intake is confirmed.
 Then:
 1. Launch 1 parallel subagent per exploration area
 2. Merge to trip-explorer.json
-3. Render + publish to travel.parthchandak.info
+3. `bash scripts/run-trip.sh ~/Documents/Research/travel/{trip-slug}/`
 4. Present compare link + recommendation in 3 bullets
 
 Deliverables: index.html, trip-explorer.json, group_message (<180 words)
