@@ -10,6 +10,8 @@ Canonical data contract for multi-option HTML output. Parent agent merges subage
     "title": "Labor Day Sierra Escape",
     "subtitle": "Bucks Lake vs Downieville vs Nevada City",
     "dates": "Sep 4–7, 2026",
+    "depart_at": "2026-09-04T15:30:00-07:00",
+    "return_at": "2026-09-07T18:00:00-07:00",
     "checkin": "2026-09-04",
     "checkout": "2026-09-07",
     "origin": "Redwood City, CA",

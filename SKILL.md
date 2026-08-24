@@ -24,7 +24,13 @@ metadata:
 
 # Travel Agent — Multi-Option Trip Planner
 
+**Product goal:** `GOAL.md` · Full spec: `references/product-goal.md` · Intake: `references/intake-gate.md`
+
+Help a group decide **where** to go and **how** to spend their dates — verified lodging, activities, day plans — in under 15 minutes of reading. We link to book; we never book.
+
 End-to-end planner: user gives 2–5 destination seeds → parallel subagents research each → synthesize into **trip-explorer.json** → render **index.html** → user picks one → TripKit map for final itinerary.
+
+**One command (after JSON exists):** `bash scripts/run-trip.sh ~/Documents/Research/travel/{trip-slug}/`
 
 ## Installed render stack
 
@@ -52,7 +58,8 @@ See `references/printing-press-tools.md` for install commands and per-phase CLI 
 
 ```
 Phase 0: Intake gate
-  Confirm dates, origin, party, budget, vehicle, lodging prefs, ranked option order
+  Load references/intake-gate.md — confirm depart/return datetime, origin, party, areas
+  Write trip-spec.md; user approves before any research
 
 Phase 1: Parallel research (Task tool — one subagent per option)
   Load references/parallel-research-protocol.md
@@ -60,17 +67,13 @@ Phase 1: Parallel research (Task tool — one subagent per option)
 
 Phase 2: Synthesize
   Merge subagent JSON → trip-explorer.json
+  node scripts/validate-trip-explorer.js trip-explorer.json
   Score + rank options (user preference is tie-breaker, not override for fragile logistics)
   Write to ~/Documents/Research/travel/{trip-slug}/
 
-Phase 3: Render HTML
-  node scripts/render-trip-explorer.js trip-explorer.json index.html
-  (auto-runs enrich-images.mjs for hero banners, photo galleries, activity/lodging thumbnails)
-  Design rules: references/trip-explorer-design.md
-
-Phase 4: Publish (optional)
-  bash scripts/publish-trip-explorer.sh ~/Documents/Research/travel/{trip-slug}/
-  → https://travel.parthchandak.info (Cloudflare Pages, no auth)
+Phase 3–4: Render + publish
+  bash scripts/run-trip.sh ~/Documents/Research/travel/{trip-slug}/
+  (validate → render → tripkit → travel.parthchandak.info)
 
 Phase 5: User picks option + day plan
   Convert to TripKit YAML → references/tripkit-bridge.md
