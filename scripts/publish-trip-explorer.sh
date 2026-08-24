@@ -21,8 +21,19 @@ fi
 echo "==> Render"
 node "$SKILL_DIR/scripts/render-trip-explorer.js" "$JSON" "$OUT"
 
+TRIP_DIR="$(dirname "$OUT")"
+YAML="$TRIP_DIR/trip.yaml"
+MAP="$TRIP_DIR/trip-map.html"
+
+echo "==> TripKit map (recommended option)"
+node "$SKILL_DIR/scripts/json-to-tripkit.js" "$JSON" "$YAML" || true
+if [[ -f "$YAML" ]] && command -v npx >/dev/null; then
+  npx tripkit validate "$YAML" 2>/dev/null || echo "WARN: tripkit validate skipped"
+  npx tripkit "$YAML" "$MAP" 2>/dev/null || echo "WARN: tripkit render skipped — install: npm i -g tripkit"
+fi
+
 echo "==> Deploy to travel.parthchandak.info"
-DEPLOY_DIR="$(dirname "$OUT")"
+DEPLOY_DIR="$TRIP_DIR"
 "$HOME/.hermes/bin/deploy-cf-pages.sh" travel "$DEPLOY_DIR"
 
 echo ""

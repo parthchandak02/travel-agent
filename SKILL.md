@@ -74,7 +74,11 @@ Phase 4: Publish (optional)
 
 Phase 5: User picks option + day plan
   Convert to TripKit YAML → references/tripkit-bridge.md
+  node scripts/json-to-tripkit.js trip-explorer.json trip.yaml --option opt-5 --plan plan-a
   npx tripkit validate && npx tripkit trip.yaml trip-map.html
+  (auto-runs in publish-trip-explorer.sh for recommended option)
+
+Competitive context: references/competitive-landscape.md
 ```
 
 ## Parallel subagent split
