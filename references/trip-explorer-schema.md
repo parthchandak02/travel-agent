@@ -20,7 +20,7 @@ Canonical data contract for multi-option HTML output. Parent agent merges subage
     "generated_at": "2026-08-23T17:00:00-07:00",
     "recommended_option_id": "opt-5",
     "backup_option_id": "opt-1",
-    "book_urgency": "Lodging and marina rentals — book within 48h for Labor Day"
+    "book_urgency": null
   },
   "options": [ /* Option */ ],
   "group_message": "Under 180 words, copy-pasteable",
@@ -29,6 +29,8 @@ Canonical data contract for multi-option HTML output. Parent agent merges subage
   ]
 }
 ```
+
+**`meta.book_urgency`** — omit by default. Only set when the user explicitly wants a booking deadline callout on the page; lodging details belong in each option's lodging section, not a header banner.
 
 ## Option object
 

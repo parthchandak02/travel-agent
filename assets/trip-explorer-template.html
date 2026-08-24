@@ -210,10 +210,12 @@ const bedLine = l => {
 
 function hero() {
   const m = DATA.meta || {}, t = m.travelers || {};
+  const mapLink = m.trip_map_url ? `<p style="margin-top:14px"><a href="${esc(m.trip_map_url)}" style="color:#fff;text-decoration:underline">View recommended trip map →</a></p>` : '';
   return `<header class="hero">
     <h1>${esc(m.title||'Trip Explorer')}</h1>
     <div class="meta">${esc(m.dates||'')} · ${esc(m.origin||'')} · ${t.adults||'?'} adults · ${t.beds_min||2}+ beds</div>
     ${m.book_urgency?`<div class="urgency">${esc(m.book_urgency)}</div>`:''}
+    ${mapLink}
   </header>`;
 }
 
@@ -295,15 +297,15 @@ function renderLodging(o) {
       <p class="section-deck">${DATA.meta?.travelers?.adults||3} adults · ${DATA.meta?.travelers?.beds_min||2}+ beds required</p>
     </header>
     <ol class="lodge-list">${rows.map(l=>{
-      const pick = l.rank===1 || l.status==='book_now';
-      const ctaCls = l.status==='book_now'?'lodge-cta':'lodge-cta lodge-cta--ghost';
-      const ctaLabel = l.status==='book_now'?'Book':l.status==='viable'?'Check site':'Verify';
+      const pick = l.rank===1;
+      const ctaCls = 'lodge-cta lodge-cta--ghost';
+      const ctaLabel = 'View';
       return `<li class="lodge-row${pick?' lodge-row--pick':''}">
         <span class="lodge-rank" aria-hidden="true">${l.rank}</span>
         <div class="lodge-main">
           <div class="lodge-title">
             <h4>${l.booking_url?`<a href="${esc(l.booking_url)}" target="_blank" rel="noopener">${esc(l.name)}</a>`:esc(l.name)}</h4>
-            ${l.status==='book_now'?`<span class="lodge-status">Book now</span>`:''}
+            ${pick?`<span class="lodge-status">Top pick</span>`:''}
           </div>
           <p class="lodge-meta">${esc(l.location||'')} · ${esc(l.platform||l.type||'')}</p>
           ${bedLine(l)}

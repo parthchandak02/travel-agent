@@ -22,6 +22,12 @@ const IMG = {
       'Feather River': 'https://plumascounty.org/wp-content/uploads/2022/06/Belden-Historic-Bridge.jpg',
     },
     lodge: 'https://images.unsplash.com/photo-1449158743715-0acffed1da56?w=400',
+    lodges: {
+      'Bucks Lake Marina': 'https://plumascounty.org/wp-content/uploads/2022/05/bucks-lake-hero-image.jpg',
+      'Quincy Feather': 'https://www.quincyfeatherbed.com/wp-content/uploads/2019/05/Quincy-Feather-Bed-Inn-Exterior.jpg',
+      'Gold Pan': 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400',
+      'Airbnb': 'https://plumascounty.org/wp-content/uploads/2022/05/bucks-lake-hero-image.jpg',
+    },
   },
   'opt-4': {
     hero: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Hike_to_the_top_of_the_Sierra_Buttes.jpg/960px-Hike_to_the_top_of_the_Sierra_Buttes.jpg',
@@ -40,6 +46,12 @@ const IMG = {
       'Downieville': 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800',
     },
     lodge: 'https://images.unsplash.com/photo-1520250497591-112f2f40a3a4?w=400',
+    lodges: {
+      'Buttes Resort': 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Hike_to_the_top_of_the_Sierra_Buttes.jpg/960px-Hike_to_the_top_of_the_Sierra_Buttes.jpg',
+      'Yuba River Inn': 'https://gonevadacounty.com/wp-content/uploads/2025/09/Emerald_Pools_Color-1024x683.jpg',
+      'Riverside': 'https://gonevadacounty.com/wp-content/uploads/2025/09/Emerald_Pools_Color-1024x683.jpg',
+      'Shangri': 'https://images.unsplash.com/photo-1520250497591-112f2f40a3a4?w=400',
+    },
   },
   'opt-1': {
     hero: 'https://gonevadacounty.com/wp-content/uploads/2025/09/Emerald_Pools_Color-1024x683.jpg',
@@ -59,8 +71,23 @@ const IMG = {
       'South Yuba': 'https://gonevadacounty.com/wp-content/uploads/2025/09/Emerald_Pools_Color-1024x683.jpg',
     },
     lodge: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400',
+    lodges: {
+      'Nevada City Inn': 'https://gonevadacounty.com/wp-content/uploads/2025/09/Emerald_Pools_Color-1024x683.jpg',
+      'Courtyard Suites': 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400',
+      'Best Western': 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400',
+      'Outside Inn': 'https://images.unsplash.com/photo-1511593358241-7eea1f3c84e5?w=800',
+    },
   },
 };
+
+function matchLodge(name, lodges, fallback) {
+  if (!lodges) return fallback;
+  const n = name.toLowerCase();
+  for (const [k, url] of Object.entries(lodges)) {
+    if (n.includes(k.toLowerCase())) return url;
+  }
+  return fallback;
+}
 
 function matchAct(name, acts) {
   const n = name.toLowerCase();
@@ -83,7 +110,7 @@ for (const opt of data.options) {
     a.image = a.image || matchAct(a.name, pack.acts);
   }
   for (const l of opt.lodging || []) {
-    l.image = l.image || pack.lodge;
+    l.image = l.image || matchLodge(l.name, pack.lodges, pack.lodge);
   }
   for (const plan of opt.day_plans || []) {
     for (const day of plan.days || []) {
