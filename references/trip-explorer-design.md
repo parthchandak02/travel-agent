@@ -2,66 +2,96 @@
 
 Agents: follow this when building or polishing the HTML trip explorer.
 
+**Design read:** Editorial travel comparison for a friend group — calm, magazine-style itinerary, forest green accent on warm stone. Not a bordered admin panel.
+
 ## UX principles
 
-1. **One navigation pattern** — large photo cards at the top. No duplicate sticky nav or second hero banners.
-2. **Overview → detail** — landing shows all options; tap a card to drill in; "← All options" returns.
-3. **Photos everywhere** — hero card, gallery strip, activity cards, lodging thumbs, day thumbnails.
-4. **No clutter** — skip pills, score tables, and redundant badges. Show urgency once in the header.
-5. **Self-contained** — single `index.html`; fonts/CDN only; no build step.
+1. **One navigation** — photo option cards only. No sticky nav, no duplicate heroes.
+2. **Itinerary is the hero** — day-by-day schedule is the centerpiece inside each option. Lodging before itinerary (book urgency); activities collapsed below as reference.
+3. **Borderless maturity** — use whitespace, hairline dividers, and soft shadows. No card-outline soup, no emoji meta rows, no left-rail alert boxes.
+4. **Photos** — option cards, gallery strip, full-width day mastheads (16:9), small activity thumbs in collapsed reference.
+5. **Self-contained** — single `index.html`; DM Sans + Instrument Serif; no build step.
 
 ## Render pipeline
 
 ```bash
-# 1. Research → trip-explorer.json (see trip-explorer-schema.md)
-# 2. Enrich images (auto-runs on render; or manual):
-node scripts/enrich-images.mjs path/to/trip-explorer.json
-
-# 3. Render HTML
 node scripts/render-trip-explorer.js path/to/trip-explorer.json path/to/index.html
-
-# 4. Preview locally
-python3 -m http.server 5199 --directory path/to/trip-dir
-
-# 5. Deploy (Cloudflare Pages → travel.parthchandak.info)
-bash scripts/publish-trip-explorer.sh path/to/trip-dir
+python3 -m http.server 5199 --directory path/to/trip-dir   # preview
+bash scripts/publish-trip-explorer.sh path/to/trip-dir      # → travel.parthchandak.info
 ```
 
-## Image enrichment
+## Day itinerary pattern (required)
 
-`enrich-images.mjs` keys must match option `id` exactly (e.g. `opt-5`, not `opt5`).
+Each `day_plans[].days[]` renders as an editorial day article:
 
-Add curated URLs per trip in the `IMG` map:
-- `hero` + `hero_credit` + `gallery[]` per option
-- `acts` — substring match on activity names
-- `lodge` — default lodging thumbnail
+```
+Day 3                    ← accent kicker (sans, uppercase)
+Saturday, Sep 5          ← serif headline
+2 stops · ~1.5 hr driving ← muted summary (auto-computed)
 
-Prefer official tourism og:images, parks.ca.gov, MyHikes, waterfallhikes R2. Verify URLs return 200.
+[──────── 16:9 masthead image ────────]
 
-## Visual system
+9:00 AM    Feather Falls           ← time column + serif block title
+           8.5 mi waterfall hike     ← sans body
+           Drive · 45 min · On site · 5–6 hr · Parking · Trailhead by 7 AM
+           Official site · Directions
+           Plan B                    ← 2px left accent rule, not bordered alert
+           Shorter Bucks Lake walk
+```
 
-| Token | Value |
-|-------|-------|
-| Background | `#f0ede6` warm stone |
-| Accent | `#1b5e3b` forest green |
-| Serif headlines | Instrument Serif |
-| Body | DM Sans |
-| Cards | white, 14px radius, subtle border |
+**Plan switcher:** uppercase underline tabs (not bordered pills). Empty plans show vibe + “still being researched” message.
+
+**Multiple blocks per day:** ordered `<ol class="schedule">` with hairline separators between blocks.
 
 ## Section order (per option detail)
 
 1. Gallery strip
-2. Drive / score stats (3 columns)
-3. Strengths + tradeoffs (one line each)
-4. Map (Leaflet, activity pins)
-5. Activities (photo cards, 2-col grid)
-6. Lodging (thumb + price + book link)
-7. Day plans (tabs A/B/C)
-8. Reviews (if any)
-9. Holiday reality check
+2. Inline stats row (no boxes)
+3. Strengths / tradeoffs
+4. Map (shadow, no border)
+5. **Lodging** (ranked list, CTA buttons)
+6. **Itinerary** (plan tabs + day articles) ← primary content
+7. Activities (`<details>` collapsed when itinerary exists)
+8. Reviews (serif pull quotes, no left border)
+9. Before you go (soft warn surface, no left rail)
+
+## Visual tokens
+
+| Token | Value |
+|-------|-------|
+| Background | `#f0ede6` |
+| Surface | `#ffffff` |
+| Accent | `#1b5e3b` (links + active states — one accent only) |
+| Hairline | `rgba(26,26,24,.08)` |
+| Spacing | 8 / 16 / 24 / 40 / 64 px scale |
+| Headlines | Instrument Serif |
+| Body | DM Sans |
+
+## CSS to avoid
+
+- Bordered stat cards, activity 2-col card grids, dashed lodging outlines
+- Green left-border timeline rails, emoji logistics rows (🚗⏱🅿️)
+- Bordered alert boxes for Plan B
+- Pill/tab borders for plan variants
+- Status communicated via border color instead of typography
+
+## Image enrichment
+
+`enrich-images.mjs` keys must match option `id` (`opt-5`, not `opt5`). Day images come from `day.image` or first block match.
 
 ## Deploy
 
-Static site only — no auth. Uses `~/.hermes/bin/deploy-cf-pages.sh` with project name `travel` → `travel.parthchandak.info`.
+`bash scripts/publish-trip-explorer.sh <trip-dir>` → Cloudflare Pages project `travel` → `https://travel.parthchandak.info` (no auth).
 
-Requires Cloudflare credentials in the Hermes secrets file (see workspace gitguardian rule).
+Requires Cloudflare credentials in the Hermes secrets file.
+
+## Agent QA checklist
+
+Before publish, verify each section:
+
+- [ ] Option cards: active = bottom accent bar + shadow, not 3px ring
+- [ ] Each day has masthead image when `day.image` set
+- [ ] Plan A has full days; B/C show vibe or placeholder if empty
+- [ ] Lodging shows bed fit line for every row
+- [ ] Activities collapsed when itinerary populated
+- [ ] No duplicate navigation elements
