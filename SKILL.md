@@ -65,6 +65,7 @@ Phase 2: Synthesize
 
 Phase 3: Render HTML
   node scripts/render-trip-explorer.js trip-explorer.json index.html
+  (auto-runs enrich-images.mjs for hero banners, photo galleries, activity/lodging thumbnails)
 
 Phase 4: User picks option + day plan
   Convert to TripKit YAML → references/tripkit-bridge.md

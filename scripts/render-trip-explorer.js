@@ -15,6 +15,15 @@ if (!input) {
 }
 
 const data = JSON.parse(fs.readFileSync(input, 'utf8'));
+
+// Auto-enrich with curated hero/gallery/activity images when available
+const enrichScript = path.join(__dirname, 'enrich-images.mjs');
+if (fs.existsSync(enrichScript)) {
+  const { execFileSync } = require('child_process');
+  execFileSync(process.execPath, [enrichScript, input], { stdio: 'inherit' });
+  Object.assign(data, JSON.parse(fs.readFileSync(input, 'utf8')));
+}
+
 const templatePath = path.join(__dirname, '..', 'assets', 'trip-explorer-template.html');
 let html = fs.readFileSync(templatePath, 'utf8');
 html = html.replace('__TRIP_DATA__', JSON.stringify(data).replace(/</g, '\\u003c'));
