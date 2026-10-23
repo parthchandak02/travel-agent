@@ -51,6 +51,9 @@ if [[ -f "$YAML" ]] && command -v npx >/dev/null; then
   npx tripkit "$YAML" "$MAP" 2>/dev/null || echo "WARN: tripkit render skipped — install: npm i -g tripkit"
 fi
 
+# Optional password page: active only when the Pages project has a SITE_PASSWORD secret.
+cp "$SKILL_DIR/assets/_worker.js" "$TRIP_DIR/_worker.js"
+
 echo "==> Deploy ($DEPLOY_PROJECT)"
 if [[ -n "$DEPLOY_CMD" ]]; then
   # Expand a leading ~ or $HOME written literally in .env.local
