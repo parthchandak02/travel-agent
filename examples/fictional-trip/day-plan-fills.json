@@ -1,0 +1,132 @@
+{
+  "group_message": "Fictional example: Pinecrest Hollow is the top pick (hike + lake); Saltmarsh Bay is the coastal backup.",
+  "meta": {
+    "chosen_plan_id": "plan-a"
+  },
+  "plans": {
+    "opt-1": {
+      "plan-b": [
+        {
+          "label": "Saturday May 23",
+          "blocks": [
+            {
+              "time": "08:00",
+              "title": "Ridge Loop Trail",
+              "activity": "Hike first",
+              "drive_min": 20,
+              "duration": "3 hr",
+              "parking": "Before 9 AM",
+              "backup": "Town stroll"
+            }
+          ]
+        },
+        {
+          "label": "Sunday May 24",
+          "blocks": [
+            {
+              "time": "08:00",
+              "title": "Hollow Lake",
+              "activity": "Swim + rest",
+              "drive_min": 20,
+              "duration": "3 hr",
+              "parking": "Before 9 AM",
+              "backup": "Town stroll"
+            }
+          ]
+        }
+      ],
+      "plan-c": [
+        {
+          "label": "Saturday May 23",
+          "blocks": [
+            {
+              "time": "08:00",
+              "title": "Old Mill Street",
+              "activity": "Brunch + shops",
+              "drive_min": 20,
+              "duration": "3 hr",
+              "parking": "Before 9 AM",
+              "backup": "Town stroll"
+            }
+          ]
+        },
+        {
+          "label": "Sunday May 24",
+          "blocks": [
+            {
+              "time": "08:00",
+              "title": "Hollow Lake",
+              "activity": "Quiet shoreline",
+              "drive_min": 20,
+              "duration": "3 hr",
+              "parking": "Before 9 AM",
+              "backup": "Town stroll"
+            }
+          ]
+        }
+      ]
+    },
+    "opt-2": {
+      "plan-b": [
+        {
+          "label": "Saturday May 23",
+          "blocks": [
+            {
+              "time": "08:00",
+              "title": "Bluff Trail",
+              "activity": "Hike first",
+              "drive_min": 20,
+              "duration": "3 hr",
+              "parking": "Before 9 AM",
+              "backup": "Town stroll"
+            }
+          ]
+        },
+        {
+          "label": "Sunday May 24",
+          "blocks": [
+            {
+              "time": "08:00",
+              "title": "Saltmarsh Cove",
+              "activity": "Beach day",
+              "drive_min": 20,
+              "duration": "3 hr",
+              "parking": "Before 9 AM",
+              "backup": "Town stroll"
+            }
+          ]
+        }
+      ],
+      "plan-c": [
+        {
+          "label": "Saturday May 23",
+          "blocks": [
+            {
+              "time": "08:00",
+              "title": "Harbor Walk",
+              "activity": "Slow morning",
+              "drive_min": 20,
+              "duration": "3 hr",
+              "parking": "Before 9 AM",
+              "backup": "Town stroll"
+            }
+          ]
+        },
+        {
+          "label": "Sunday May 24",
+          "blocks": [
+            {
+              "time": "08:00",
+              "title": "Saltmarsh Cove",
+              "activity": "Tide pools",
+              "drive_min": 20,
+              "duration": "3 hr",
+              "parking": "Before 9 AM",
+              "backup": "Town stroll"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

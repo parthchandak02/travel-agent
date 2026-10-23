@@ -107,21 +107,21 @@ Saturday, Sep 5          ← serif headline
 
 ## Image enrichment
 
-`enrich-images.mjs` keys must match option `id` (`opt-5`, not `opt5`). Day images come from `day.image` or first block match.
+`enrich-images.mjs` reads `images.json` next to the trip JSON (see `examples/fictional-trip/images.json`); its keys must match option `id` (`opt-5`, not `opt5`). Day images come from `day.image` or first block match.
 
 ## Render pipeline
 
 ```bash
 node scripts/render-trip-explorer.js path/to/trip-explorer.json path/to/index.html
 python3 -m http.server 5199 --directory path/to/trip-dir   # preview
-bash scripts/publish-trip-explorer.sh path/to/trip-dir      # → travel.example.com
+bash scripts/publish-trip-explorer.sh path/to/trip-dir      # → $TRAVEL_DEPLOY_URL
 ```
 
 ## Deploy
 
-`bash scripts/publish-trip-explorer.sh <trip-dir>` → Cloudflare Pages project `travel` → `https://travel.example.com` (no auth).
+`bash scripts/publish-trip-explorer.sh <trip-dir>` → the deploy target configured in `.env.local` (see `.env.example`): either a custom `TRAVEL_DEPLOY_CMD`, or `wrangler pages deploy` to the Cloudflare Pages project `TRAVEL_DEPLOY_PROJECT`. Static, no auth.
 
-Requires Cloudflare credentials in the Hermes secrets file.
+Requires Cloudflare credentials in your environment (e.g. `CLOUDFLARE_API_TOKEN`).
 
 ## Agent QA checklist
 

@@ -7,7 +7,7 @@ const { execSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 
-const outDir = process.argv[2] || path.join(process.env.HOME, 'Documents/Research/travel/labor-day-sierra-2026');
+const outDir = process.argv[2] || path.join(require('os').tmpdir(), 'travel-agent-test-workflow');
 fs.mkdirSync(outDir, { recursive: true });
 
 function run(cmd) {
@@ -79,6 +79,8 @@ const data = {
     checkin: '2026-09-04',
     checkout: '2026-09-07',
     origin: 'San Francisco, CA',
+    origin_lat: 37.7749,
+    origin_lng: -122.4194,
     travelers: { adults: 3, beds_min: 2, bedrooms_preferred: 2, note: '3 adults; 2 beds required' },
     generated_at: new Date().toISOString(),
     recommended_option_id: 'opt-5',

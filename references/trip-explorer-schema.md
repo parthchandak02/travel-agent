@@ -17,7 +17,7 @@ Canonical data contract for multi-option HTML output. Parent agent merges subage
     "origin": "San Francisco, CA",
     "origin_lat": 37.7749,
     "origin_lng": -122.4194,
-    "travelers": { "adults": 3, "children": 0, "beds_min": 2, "bedrooms_preferred": 2, "note": "3 adults — 3 adults; 2 beds required, 2BR preferred" },
+    "travelers": { "adults": 3, "children": 0, "beds_min": 2, "bedrooms_preferred": 2, "note": "3 adults; 2 beds required, 2BR preferred" },
     "vehicle": "normal-clearance sedan",
     "generated_at": "2026-08-23T17:00:00-07:00",
     "recommended_option_id": "opt-5",

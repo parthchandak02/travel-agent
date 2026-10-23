@@ -105,9 +105,23 @@ bash scripts/run-trip.sh path/to/my-trip/ --no-publish   # validate, render inde
 node scripts/validate-trip-explorer.js path/to/my-trip/trip-explorer.json
 ```
 
-Without `--no-publish` it deploys through the owner's own Cloudflare Pages script, which is not in
-this repo. The research step relies on separately installed Printing Press CLIs; only the
-TripAdvisor one needs an API key.
+Without `--no-publish` it deploys the trip folder to Cloudflare Pages. Copy `.env.example` to
+`.env.local` and set `TRAVEL_DEPLOY_PROJECT` (and optionally `TRAVEL_DEPLOY_URL`, or
+`TRAVEL_DEPLOY_CMD` for your own deploy script); by default it runs `wrangler pages deploy`. The
+research step relies on separately installed Printing Press CLIs; only the TripAdvisor one needs an
+API key.
+
+To try the pipeline without any research, run it on a copy of the fictional sample (rendering
+fills plans and photos into the JSON in place):
+
+```bash
+cp -r examples/fictional-trip /tmp/demo-trip && bash scripts/run-trip.sh /tmp/demo-trip --no-publish
+```
+
+**Your own preferences.** Copy `references/profile.example.md` to `references/personal/profile.md`
+and fill in your home city, usual party, bed rules, diet and planning style. The agent reads it before
+intake. `references/personal/` and `.env.local` are git-ignored, so trip notes and personal details
+stay on your machine.
 
 ## Reference
 
@@ -117,8 +131,11 @@ TripAdvisor one needs an API key.
 ```
 SKILL.md                              Orchestrator instructions and the CLI recipes
 GOAL.md                               Product north star and success criteria
+.env.example                          Deploy target settings (copy to .env.local)
 assets/trip-explorer-template.html    The page; trip JSON is injected at render time
+examples/fictional-trip/              Sample trip JSON, day-plan fills and image map
 references/
+  profile.example.md                  Template for your git-ignored personal profile
   intake-gate.md                      Phase 0: confirm the spec before research
   parallel-research-protocol.md       Subagent split and prompt template
   trip-explorer-schema.md             The JSON contract, scores and status enums
@@ -131,7 +148,9 @@ scripts/
   validate-trip-explorer.js           Errors on fewer than 2 options, 4 lodgings or 3 activities
   render-trip-explorer.js             JSON into the HTML template
   json-to-tripkit.js                  Chosen option and plan into TripKit YAML
-  publish-trip-explorer.sh            Render and deploy
+  publish-trip-explorer.sh            Render and deploy (target from .env.local)
+  fill-day-plans.mjs                  Fills empty plans from the trip's day-plan-fills.json
+  enrich-images.mjs                   Adds photos from the trip's images.json
   install-deps.sh                     TripKit and Windward
 ```
 

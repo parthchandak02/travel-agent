@@ -1,6 +1,6 @@
 # Competitive Landscape — Travel Agent Skills
 
-How open-source travel skills compare, and what makes **travel-agent** the best fit for group weekend planning.
+How open-source travel skills compare, and what makes **travel-agent** a good fit for group weekend planning.
 
 ## Landscape (GitHub, 2026)
 
@@ -21,7 +21,7 @@ How open-source travel skills compare, and what makes **travel-agent** the best 
 3. **3 plan variants per option** — A/B/C day swaps (water-first vs hike-first)
 4. **Printing Press CLIs** — live hotel/airbnb/trail/review data, not scraped guesses
 5. **Visual trip explorer** — photo cards, editorial itineraries, maps
-6. **One-command publish** — `travel.example.com` via Cloudflare Pages
+6. **One-command publish** — to your own Cloudflare Pages project (`.env.local`)
 7. **TripKit handoff** — after pick, `trip-map.html` for navigation-ready map
 
 ## What we adopted from others
@@ -56,7 +56,7 @@ How open-source travel skills compare, and what makes **travel-agent** the best 
 
 5. PUBLISH (Phase 4)
    bash scripts/publish-trip-explorer.sh <trip-dir>
-   → index.html + trip-map.html → travel.example.com
+   → index.html + trip-map.html → $TRAVEL_DEPLOY_URL
 
 6. COMMIT (Phase 5, after user picks)
    node scripts/json-to-tripkit.js → trip.yaml

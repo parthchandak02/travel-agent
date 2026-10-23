@@ -8,8 +8,6 @@ tags:
   - flights
   - itinerary
   - airbnb
-  - monterey
-  - carmel
 metadata:
   hermes:
     tags:
@@ -29,6 +27,10 @@ metadata:
 Help a group decide **where** to go and **how** to spend their dates — verified lodging, activities, day plans — in under 15 minutes of reading. We link to book; we never book.
 
 End-to-end planner: user gives 2–5 destination seeds → parallel subagents research each → synthesize into **trip-explorer.json** → render **index.html** → user picks one → TripKit map for final itinerary.
+
+## Personal profile (load first)
+
+If `references/personal/profile.md` exists (git-ignored), read it before intake: it holds the user's home origin, usual travel party, lodging/bed rules, dietary needs, planning-style preferences and past trip notes (`references/personal/trips/`). Use it to pre-fill the intake spec, but still echo the spec back for approval. If it does not exist, use `references/profile.example.md` only as a guide to what to ask, never as real data.
 
 **One command (after JSON exists):** `bash scripts/run-trip.sh ~/Documents/Research/travel/{trip-slug}/`
 
@@ -52,7 +54,7 @@ See `references/printing-press-tools.md` for install commands and per-phase CLI 
 
 **Tier 2 (situational):** hotelist, hotel-tonight, flight-goat, roadside-america, travelclick, wanderlog
 
-**Lodging rule for this group:** 3 adults → min **2 beds**, prefer **2 bedrooms**. Check Airbnb `primary_line`; verify hotels on direct sites.
+**Lodging rule:** take bed/bedroom minimums from the trip spec (or the personal profile). Check Airbnb `primary_line`; verify hotels on direct sites.
 
 ## Workflow (orchestrator)
 
@@ -73,7 +75,7 @@ Phase 2: Synthesize
 
 Phase 3–4: Render + publish
   bash scripts/run-trip.sh ~/Documents/Research/travel/{trip-slug}/
-  (validate → render → tripkit → travel.example.com)
+  (validate → render → tripkit → deploy target from `.env.local`, see `.env.example`)
 
 Phase 5: User picks option + day plan
   Convert to TripKit YAML → references/tripkit-bridge.md
@@ -120,11 +122,11 @@ Each destination option MUST include:
 
 | Scenario | Tool |
 |----------|------|
-| User has 2–5 **specific** destination seeds (a friend's Option 5/4/1) | **trip-explorer** parallel subagents |
+| User has 2–5 **specific** destination seeds (e.g. a friend's Option 5/4/1) | **trip-explorer** parallel subagents |
 | User says "plan me a vacation anywhere under $X" | **windward** CLI |
 | User picked one destination, wants map | **TripKit** |
 
-## Planning style (still applies)
+## Default planning style
 
 Do NOT deliver a single fixed itinerary until user commits. Present:
 - 2–5 destination options with scores
@@ -132,7 +134,7 @@ Do NOT deliver a single fixed itinerary until user commits. Present:
 - 4+ lodging per top option
 - Decision question last: "Which option + which plan?"
 
-See existing section below for CLI patterns, hotel research, surprise trips.
+Personal overrides (party, diet, style) come from `references/personal/profile.md` when present.
 
 ---
 
@@ -198,7 +200,7 @@ airbnb-pp-cli airbnb-listing search "<city>" --checkin YYYY-MM-DD --checkout YYY
 
 For thorough hotel research, run ALL of these and cross-reference:
 
-1. **hotel-goat** on 3 separate locations (Carmel, Pacific Grove, Monterey) — each has different inventory
+1. **hotel-goat** on 3 neighboring towns (e.g. Carmel, Pacific Grove, Monterey) — each has different inventory
 2. **trvl hotels** on the main destination with `--format json` for broader Google Hotels coverage
 3. **Direct booking site** for top contenders — aggregate sites often show off-season rates. Peak summer pricing can be **2x** what aggregate sites report (verified: Horizon Inn showed $260-312 on Kayak but $520-570/night on their own booking system).
 4. **Web search** for hotels that don't appear in Google Hotels (Green Gables, Hotel Carmel, Coachman's Inn were absent from hotel-goat results)
@@ -339,13 +341,13 @@ Read queries use local SQLite (offline). **Adding flights** uses `flights track`
 - **Flight tracking stats** → `pp-flighty-cli stats`
 - **Check DB health** → `pp-flighty-cli doctor`
 
-## Planning style: Options Menu, Not One Itinerary
+## Planning Style: Options Menu, Not One Itinerary
 
-Do NOT deliver a single fixed itinerary. He explicitly wants:
-- **2-5 options per category** (hotels, activities, dinners) so he can pick and choose
+Do NOT deliver a single fixed itinerary. Default to:
+- **2-5 options per category** (hotels, activities, dinners) so the user can pick and choose
 - **3-5 day-by-day templates** (Plan A, B, C, D, E) with different vibes and budgets
-- Modular thinking — each category is standalone; he composes the final weekend himself
-- The decision-driving question goes last: one clear choice he needs to make before you start booking
+- Modular thinking — each category is standalone; the user composes the final weekend
+- The decision-driving question goes last: one clear choice to make before booking
 
 Format: Present options in scannable tables or compact lists. Lead with price and what makes each option distinct.
 
@@ -369,15 +371,15 @@ Day-by-day timeline...
 
 ## Surprise trips
 
-For a surprise trip, suggest an emotional centerpiece. Person-specific rules live in the personal profile.
+For a surprise trip, suggest an emotional centerpiece (short video clips from friends, a one-page letter, timed for a quiet evening rather than arrival or a restaurant). Keep detailed planning out of any group chat the surprised person is in. Person-specific rules live in the personal profile.
 
 ## Parallel Research Pattern for Complex Trips
 
 For multi-day trips with 3+ workstreams (hotels, activities, dining, emotional), use delegate_task with parallel sub-agents:
 
 1. **Hotels** — CLI pricing + direct booking site checks. Run hotel-goat on 3 locations.
-2. **Activities + Dining** — verify pricing on provider websites, check menus against dietary needs (per the dietary needs in the trip spec), check OpenTable availability
-3. **Emotional Centerpiece** — video script, letter framework, timeline, calendar verification
+2. **Activities + Dining** — verify pricing on provider websites, check menus against dietary needs in the trip spec / personal profile, check OpenTable availability
+3. **Emotional Centerpiece** (surprise trips) — video script, letter framework, timeline, calendar verification
 
 Max 3 concurrent sub-agents. Each returns structured data. You synthesize into the options menu format.
 

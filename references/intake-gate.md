@@ -4,7 +4,7 @@
 
 ## Required fields
 
-Collect and confirm:
+Pre-fill from `references/personal/profile.md` when it exists (origin, party, bed rules), then collect and confirm:
 
 1. **Depart** — `YYYY-MM-DD HH:MM` + timezone (e.g. `2026-09-04 15:30 America/Los_Angeles`)
 2. **Return** — `YYYY-MM-DD HH:MM` + timezone (target home arrival)

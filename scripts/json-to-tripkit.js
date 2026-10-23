@@ -57,6 +57,9 @@ const dayBlocks = (plan.days || []).map((d, i) => {
 }).join('\n');
 
 const m = data.meta || {};
+if (typeof m.origin_lat !== 'number' || typeof m.origin_lng !== 'number') {
+  console.warn('WARN: meta.origin_lat / origin_lng missing — TripKit map origin will be wrong');
+}
 const out = `trip:
   title: ${q(`${m.title || opt.name} — ${plan.name}`)}
   subtitle: ${q(opt.tagline || '')}
@@ -68,8 +71,8 @@ const out = `trip:
     adults: ${m.travelers?.adults || 3}
     children: 0
   origin: ${q(m.origin || '')}
-  origin_lat: ${m.origin_lat || 37.7749}
-  origin_lng: ${m.origin_lng || -122.4194}
+  origin_lat: ${m.origin_lat ?? 0}
+  origin_lng: ${m.origin_lng ?? 0}
   vehicle: ${q(m.vehicle || 'sedan')}
 days:
 ${dayBlocks}`;

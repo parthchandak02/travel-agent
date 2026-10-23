@@ -44,7 +44,7 @@ Seed itinerary: {OPTION_BRIEF}
 - Dates: {CHECKIN} → {CHECKOUT} ({NIGHTS} nights)
 - Origin: {ORIGIN} (Friday depart ~{DEPART_TIME})
 - Travelers: {ADULTS} adults
-- Lodging: minimum **2 beds** for 3 adults (3 adults); **2 bedrooms preferred** but not required. Filter Airbnb `primary_line`, verify hotel room types on direct sites.
+- Lodging: minimum **{BEDS_MIN} beds**; **{BEDROOMS_PREFERRED} bedrooms preferred** but not required ({PARTY_NOTE}). Filter Airbnb `primary_line`, verify hotel room types on direct sites.
 - Vehicle: {VEHICLE}
 - Budget guidance: {BUDGET}
 - Holiday context: {HOLIDAY_NOTE}
@@ -127,6 +127,6 @@ node ~/.hermes/skills/travel/travel-agent/scripts/render-trip-explorer.js \
 
 | Options | Subagents | Notes |
 |---------|-----------|-------|
-| 3 | 3 parallel | Ideal for a friend's 5/4/1 case |
+| 3 | 3 parallel | Ideal for a 3-seed case (e.g. Option 5/4/1) |
 | 5 | 5 parallel | Full menu |
 | 1 deep dive | 3 parallel | lodging + activities + dining split |

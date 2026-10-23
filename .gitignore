@@ -1,3 +1,10 @@
 .DS_Store
 *.log
 node_modules/
+.wrangler/
+
+# Personal, never committed: planning profile, trip research notes, deploy target
+references/personal/
+profile.local.md
+.env
+.env.local

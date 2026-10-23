@@ -1,0 +1,635 @@
+{
+  "meta": {
+    "title": "Memorial Day Example Weekend",
+    "subtitle": "Pinecrest Hollow vs Saltmarsh Bay (fictional)",
+    "dates": "May 22–25, 2026",
+    "depart_at": "2026-05-22T16:00:00-07:00",
+    "return_at": "2026-05-25T17:00:00-07:00",
+    "checkin": "2026-05-22",
+    "checkout": "2026-05-25",
+    "origin": "Sacramento, CA",
+    "origin_lat": 38.5816,
+    "origin_lng": -121.4944,
+    "travelers": {
+      "adults": 4,
+      "children": 0,
+      "beds_min": 2,
+      "bedrooms_preferred": 2,
+      "note": "Two couples (fictional)"
+    },
+    "vehicle": "sedan",
+    "generated_at": "2026-05-01T12:00:00-07:00",
+    "recommended_option_id": "opt-1",
+    "backup_option_id": "opt-2"
+  },
+  "options": [
+    {
+      "id": "opt-1",
+      "rank": 1,
+      "user_preference_rank": 1,
+      "name": "Pinecrest Hollow",
+      "base_towns": [
+        "Pinecrest Hollow"
+      ],
+      "tagline": "Ridge Loop Trail + Hollow Lake",
+      "badge": "recommended",
+      "drive_friday": {
+        "hours": "2.5–3",
+        "note": "Leave 4 PM; +45 min holiday traffic"
+      },
+      "drive_monday": {
+        "hours": "2.5–3",
+        "note": "Leave by 10 AM"
+      },
+      "highlights": {
+        "water": "Hollow Lake",
+        "hike": "Ridge Loop Trail",
+        "town": "Pinecrest Hollow main street"
+      },
+      "labor_day_risk": "medium",
+      "labor_day_risk_note": "Ridge Loop Trail lot fills by 8 AM",
+      "scores": {
+        "friday_drive": {
+          "value": 4,
+          "note": "Fictional example score"
+        },
+        "monday_return": {
+          "value": 4,
+          "note": "Fictional example score"
+        },
+        "lodging_value": {
+          "value": 4,
+          "note": "Fictional example score"
+        },
+        "crowd_resilience": {
+          "value": 3,
+          "note": "Fictional example score"
+        },
+        "water_quality": {
+          "value": 4,
+          "note": "Fictional example score"
+        },
+        "hiking_quality": {
+          "value": 5,
+          "note": "Fictional example score"
+        },
+        "scenic_uniqueness": {
+          "value": 4,
+          "note": "Fictional example score"
+        },
+        "town_food": {
+          "value": 3,
+          "note": "Fictional example score"
+        },
+        "safety_reliability": {
+          "value": 4,
+          "note": "Fictional example score"
+        },
+        "overall": {
+          "value": 4,
+          "note": "Fictional example score"
+        }
+      },
+      "activities": [
+        {
+          "name": "Ridge Loop Trail",
+          "type": "hike",
+          "day": "sat",
+          "official_url": "https://example.com/opt-1/0",
+          "maps_url": "https://www.google.com/maps/search/?api=1&query=39.1,-120.6",
+          "lat": 39.1,
+          "lng": -120.6,
+          "duration": "4 hr",
+          "parking": "Arrive before 8 AM",
+          "status": "likely",
+          "crowd_level": "medium",
+          "backup": "Shorter loop nearby"
+        },
+        {
+          "name": "Hollow Lake",
+          "type": "swim",
+          "day": "sun",
+          "official_url": "https://example.com/opt-1/1",
+          "maps_url": "https://www.google.com/maps/search/?api=1&query=39.11,-120.58999999999999",
+          "lat": 39.11,
+          "lng": -120.59,
+          "duration": "3 hr",
+          "parking": "Arrive before 8 AM",
+          "status": "likely",
+          "crowd_level": "medium",
+          "backup": "Shorter loop nearby"
+        },
+        {
+          "name": "Old Mill Street",
+          "type": "town",
+          "day": "mon",
+          "official_url": "https://example.com/opt-1/2",
+          "maps_url": "https://www.google.com/maps/search/?api=1&query=39.120000000000005,-120.58",
+          "lat": 39.12,
+          "lng": -120.58,
+          "duration": "2 hr",
+          "parking": "Arrive before 8 AM",
+          "status": "likely",
+          "crowd_level": "medium",
+          "backup": "Shorter loop nearby"
+        }
+      ],
+      "lodging": [
+        {
+          "rank": 1,
+          "name": "Hollow Lake Lodge",
+          "location": "Pinecrest Hollow (fictional)",
+          "type": "hotel",
+          "platform": "direct",
+          "booking_url": "https://example.com/opt-1/stay-1",
+          "total_3_nights": 540,
+          "per_person": 135,
+          "availability": "available",
+          "beds": "2 beds / 2 bedrooms",
+          "bedrooms": 2,
+          "sleeps": 4,
+          "bed_fit": "green",
+          "amenities": [
+            "parking",
+            "kitchen"
+          ],
+          "pros": "Fictional example",
+          "cons": "Fictional example",
+          "status": "book_now",
+          "checked_at": "2026-05-01T12:00:00-07:00"
+        },
+        {
+          "rank": 2,
+          "name": "Pinecrest Inn",
+          "location": "Pinecrest Hollow (fictional)",
+          "type": "hotel",
+          "platform": "direct",
+          "booking_url": "https://example.com/opt-1/stay-2",
+          "total_3_nights": 630,
+          "per_person": 158,
+          "availability": "available",
+          "beds": "2 beds / 2 bedrooms",
+          "bedrooms": 2,
+          "sleeps": 4,
+          "bed_fit": "green",
+          "amenities": [
+            "parking",
+            "kitchen"
+          ],
+          "pros": "Fictional example",
+          "cons": "Fictional example",
+          "status": "viable",
+          "checked_at": "2026-05-01T12:00:00-07:00"
+        },
+        {
+          "rank": 3,
+          "name": "Ridge Cabins",
+          "location": "Pinecrest Hollow (fictional)",
+          "type": "hotel",
+          "platform": "direct",
+          "booking_url": "https://example.com/opt-1/stay-3",
+          "total_3_nights": null,
+          "per_person": null,
+          "availability": "needs_verification",
+          "beds": "2 beds / 2 bedrooms",
+          "bedrooms": 2,
+          "sleeps": 4,
+          "bed_fit": "yellow",
+          "amenities": [
+            "parking",
+            "kitchen"
+          ],
+          "pros": "Fictional example",
+          "cons": "Fictional example",
+          "status": "needs_verification",
+          "checked_at": "2026-05-01T12:00:00-07:00"
+        },
+        {
+          "rank": 4,
+          "name": "Lakeview Rental",
+          "location": "Pinecrest Hollow (fictional)",
+          "type": "airbnb",
+          "platform": "airbnb",
+          "booking_url": "https://example.com/opt-1/stay-4",
+          "total_3_nights": 810,
+          "per_person": 203,
+          "availability": "available",
+          "beds": "2 beds / 2 bedrooms",
+          "bedrooms": 2,
+          "sleeps": 4,
+          "bed_fit": "yellow",
+          "amenities": [
+            "parking",
+            "kitchen"
+          ],
+          "pros": "Fictional example",
+          "cons": "Fictional example",
+          "status": "viable",
+          "checked_at": "2026-05-01T12:00:00-07:00"
+        }
+      ],
+      "day_plans": [
+        {
+          "id": "plan-a",
+          "name": "Balanced",
+          "vibe": "Easy Saturday, big hike Sunday",
+          "budget_tier": "mid",
+          "days": [
+            {
+              "date": "2026-05-23",
+              "label": "Saturday May 23",
+              "blocks": [
+                {
+                  "time": "09:00",
+                  "title": "Hollow Lake",
+                  "activity": "Swim + picnic",
+                  "drive_min": 15,
+                  "duration": "3 hr",
+                  "parking": "Before 9 AM",
+                  "backup": "Town stroll",
+                  "maps_url": "https://www.google.com/maps/search/?api=1&query=39.11,-120.58999999999999"
+                }
+              ]
+            },
+            {
+              "date": "2026-05-24",
+              "label": "Sunday May 24",
+              "blocks": [
+                {
+                  "time": "07:00",
+                  "title": "Ridge Loop Trail",
+                  "activity": "Main hike",
+                  "drive_min": 20,
+                  "duration": "4 hr",
+                  "parking": "Trailhead by 7:30 AM",
+                  "backup": "Shorter loop nearby"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "plan-b",
+          "name": "Hike First",
+          "vibe": "Hike Saturday while legs are fresh",
+          "budget_tier": "mid",
+          "days": []
+        },
+        {
+          "id": "plan-c",
+          "name": "Slow Weekend",
+          "vibe": "Low-crowd backup pace",
+          "budget_tier": "low",
+          "days": []
+        }
+      ],
+      "reviews": [
+        {
+          "source": "Example review site",
+          "url": "https://example.com/opt-1/review-1",
+          "date": "2026-04",
+          "quote": "Fictional review text for the example trip.",
+          "sentiment": "positive"
+        },
+        {
+          "source": "Example forum",
+          "url": "https://example.com/opt-1/review-2",
+          "date": "2026-03",
+          "quote": "Fictional caution: parking fills early.",
+          "sentiment": "caution"
+        }
+      ],
+      "reality_check": {
+        "parking_targets": [
+          "Ridge Loop Trail 7:30 AM"
+        ],
+        "reservations": [
+          "Lodging"
+        ],
+        "verify_48h": [
+          "Weather",
+          "Trail status"
+        ],
+        "safety": [
+          "Fictional example"
+        ]
+      },
+      "strengths": [
+        "Best hike of the two"
+      ],
+      "tradeoffs": [
+        "Fewer restaurants"
+      ],
+      "eliminate": false,
+      "eliminate_reason": null
+    },
+    {
+      "id": "opt-2",
+      "rank": 2,
+      "user_preference_rank": 2,
+      "name": "Saltmarsh Bay",
+      "base_towns": [
+        "Saltmarsh Bay"
+      ],
+      "tagline": "Bluff Trail + Saltmarsh Cove",
+      "badge": "backup",
+      "drive_friday": {
+        "hours": "3–3.5",
+        "note": "Leave 4 PM; +45 min holiday traffic"
+      },
+      "drive_monday": {
+        "hours": "3.5",
+        "note": "Leave by 10 AM"
+      },
+      "highlights": {
+        "water": "Saltmarsh Cove",
+        "hike": "Bluff Trail",
+        "town": "Saltmarsh Bay main street"
+      },
+      "labor_day_risk": "high",
+      "labor_day_risk_note": "Bluff Trail lot fills by 8 AM",
+      "scores": {
+        "friday_drive": {
+          "value": 4,
+          "note": "Fictional example score"
+        },
+        "monday_return": {
+          "value": 4,
+          "note": "Fictional example score"
+        },
+        "lodging_value": {
+          "value": 3,
+          "note": "Fictional example score"
+        },
+        "crowd_resilience": {
+          "value": 3,
+          "note": "Fictional example score"
+        },
+        "water_quality": {
+          "value": 4,
+          "note": "Fictional example score"
+        },
+        "hiking_quality": {
+          "value": 3,
+          "note": "Fictional example score"
+        },
+        "scenic_uniqueness": {
+          "value": 4,
+          "note": "Fictional example score"
+        },
+        "town_food": {
+          "value": 3,
+          "note": "Fictional example score"
+        },
+        "safety_reliability": {
+          "value": 4,
+          "note": "Fictional example score"
+        },
+        "overall": {
+          "value": 3.6,
+          "note": "Fictional example score"
+        }
+      },
+      "activities": [
+        {
+          "name": "Bluff Trail",
+          "type": "hike",
+          "day": "sat",
+          "official_url": "https://example.com/opt-2/0",
+          "maps_url": "https://www.google.com/maps/search/?api=1&query=38.3,-123",
+          "lat": 38.3,
+          "lng": -123,
+          "duration": "4 hr",
+          "parking": "Arrive before 8 AM",
+          "status": "likely",
+          "crowd_level": "medium",
+          "backup": "Shorter loop nearby"
+        },
+        {
+          "name": "Saltmarsh Cove",
+          "type": "swim",
+          "day": "sun",
+          "official_url": "https://example.com/opt-2/1",
+          "maps_url": "https://www.google.com/maps/search/?api=1&query=38.309999999999995,-122.99",
+          "lat": 38.31,
+          "lng": -122.99,
+          "duration": "3 hr",
+          "parking": "Arrive before 8 AM",
+          "status": "likely",
+          "crowd_level": "medium",
+          "backup": "Shorter loop nearby"
+        },
+        {
+          "name": "Harbor Walk",
+          "type": "town",
+          "day": "mon",
+          "official_url": "https://example.com/opt-2/2",
+          "maps_url": "https://www.google.com/maps/search/?api=1&query=38.32,-122.98",
+          "lat": 38.32,
+          "lng": -122.98,
+          "duration": "2 hr",
+          "parking": "Arrive before 8 AM",
+          "status": "likely",
+          "crowd_level": "medium",
+          "backup": "Shorter loop nearby"
+        }
+      ],
+      "lodging": [
+        {
+          "rank": 1,
+          "name": "Harbor House Hotel",
+          "location": "Saltmarsh Bay (fictional)",
+          "type": "hotel",
+          "platform": "direct",
+          "booking_url": "https://example.com/opt-2/stay-1",
+          "total_3_nights": 540,
+          "per_person": 135,
+          "availability": "available",
+          "beds": "2 beds / 2 bedrooms",
+          "bedrooms": 2,
+          "sleeps": 4,
+          "bed_fit": "green",
+          "amenities": [
+            "parking",
+            "kitchen"
+          ],
+          "pros": "Fictional example",
+          "cons": "Fictional example",
+          "status": "book_now",
+          "checked_at": "2026-05-01T12:00:00-07:00"
+        },
+        {
+          "rank": 2,
+          "name": "Bay Motel",
+          "location": "Saltmarsh Bay (fictional)",
+          "type": "hotel",
+          "platform": "direct",
+          "booking_url": "https://example.com/opt-2/stay-2",
+          "total_3_nights": 630,
+          "per_person": 158,
+          "availability": "available",
+          "beds": "2 beds / 2 bedrooms",
+          "bedrooms": 2,
+          "sleeps": 4,
+          "bed_fit": "green",
+          "amenities": [
+            "parking",
+            "kitchen"
+          ],
+          "pros": "Fictional example",
+          "cons": "Fictional example",
+          "status": "viable",
+          "checked_at": "2026-05-01T12:00:00-07:00"
+        },
+        {
+          "rank": 3,
+          "name": "Cove Cottages",
+          "location": "Saltmarsh Bay (fictional)",
+          "type": "hotel",
+          "platform": "direct",
+          "booking_url": "https://example.com/opt-2/stay-3",
+          "total_3_nights": null,
+          "per_person": null,
+          "availability": "needs_verification",
+          "beds": "2 beds / 2 bedrooms",
+          "bedrooms": 2,
+          "sleeps": 4,
+          "bed_fit": "yellow",
+          "amenities": [
+            "parking",
+            "kitchen"
+          ],
+          "pros": "Fictional example",
+          "cons": "Fictional example",
+          "status": "needs_verification",
+          "checked_at": "2026-05-01T12:00:00-07:00"
+        },
+        {
+          "rank": 4,
+          "name": "Bluffside Rental",
+          "location": "Saltmarsh Bay (fictional)",
+          "type": "airbnb",
+          "platform": "airbnb",
+          "booking_url": "https://example.com/opt-2/stay-4",
+          "total_3_nights": 810,
+          "per_person": 203,
+          "availability": "available",
+          "beds": "2 beds / 2 bedrooms",
+          "bedrooms": 2,
+          "sleeps": 4,
+          "bed_fit": "yellow",
+          "amenities": [
+            "parking",
+            "kitchen"
+          ],
+          "pros": "Fictional example",
+          "cons": "Fictional example",
+          "status": "viable",
+          "checked_at": "2026-05-01T12:00:00-07:00"
+        }
+      ],
+      "day_plans": [
+        {
+          "id": "plan-a",
+          "name": "Balanced",
+          "vibe": "Easy Saturday, big hike Sunday",
+          "budget_tier": "mid",
+          "days": [
+            {
+              "date": "2026-05-23",
+              "label": "Saturday May 23",
+              "blocks": [
+                {
+                  "time": "09:00",
+                  "title": "Saltmarsh Cove",
+                  "activity": "Swim + picnic",
+                  "drive_min": 15,
+                  "duration": "3 hr",
+                  "parking": "Before 9 AM",
+                  "backup": "Town stroll",
+                  "maps_url": "https://www.google.com/maps/search/?api=1&query=38.309999999999995,-122.99"
+                }
+              ]
+            },
+            {
+              "date": "2026-05-24",
+              "label": "Sunday May 24",
+              "blocks": [
+                {
+                  "time": "07:00",
+                  "title": "Bluff Trail",
+                  "activity": "Main hike",
+                  "drive_min": 20,
+                  "duration": "4 hr",
+                  "parking": "Trailhead by 7:30 AM",
+                  "backup": "Shorter loop nearby"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "plan-b",
+          "name": "Hike First",
+          "vibe": "Hike Saturday while legs are fresh",
+          "budget_tier": "mid",
+          "days": []
+        },
+        {
+          "id": "plan-c",
+          "name": "Slow Weekend",
+          "vibe": "Low-crowd backup pace",
+          "budget_tier": "low",
+          "days": []
+        }
+      ],
+      "reviews": [
+        {
+          "source": "Example review site",
+          "url": "https://example.com/opt-2/review-1",
+          "date": "2026-04",
+          "quote": "Fictional review text for the example trip.",
+          "sentiment": "positive"
+        },
+        {
+          "source": "Example forum",
+          "url": "https://example.com/opt-2/review-2",
+          "date": "2026-03",
+          "quote": "Fictional caution: parking fills early.",
+          "sentiment": "caution"
+        }
+      ],
+      "reality_check": {
+        "parking_targets": [
+          "Bluff Trail 7:30 AM"
+        ],
+        "reservations": [
+          "Lodging"
+        ],
+        "verify_48h": [
+          "Weather",
+          "Trail status"
+        ],
+        "safety": [
+          "Fictional example"
+        ]
+      },
+      "strengths": [
+        "Best lake of the two"
+      ],
+      "tradeoffs": [
+        "Longer drive"
+      ],
+      "eliminate": false,
+      "eliminate_reason": null
+    }
+  ],
+  "group_message": "Two fictional options for the example weekend — see the compare table.",
+  "sources_checked": [
+    {
+      "name": "Example source",
+      "url": "https://example.com/sources",
+      "checked_at": "2026-05-01"
+    }
+  ]
+}

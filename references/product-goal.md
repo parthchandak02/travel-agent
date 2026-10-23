@@ -3,7 +3,6 @@
 **For agent intake.** Use this as the north star when extending `travel-agent` beyond the Labor Day Sierra prototype.
 
 **Date:** 2026-08-24  
-**Live prototype:** https://travel.example.com  
 **Skill repo:** https://github.com/parthchandak02/travel-agent  
 **Skill path:** `~/.hermes/skills/travel/travel-agent/`
 
@@ -96,7 +95,7 @@ An option is “best” only relative to the trip spec. Score each destination *
                              ▼
 ┌─────────────────────────────────────────────────────────────────┐
 │ PHASE 4 — PUBLISH (optional)                                    │
-│ bash scripts/publish-trip-explorer.sh → travel.example.com  │
+│ bash scripts/publish-trip-explorer.sh → $TRAVEL_DEPLOY_URL        │
 └────────────────────────────┬────────────────────────────────────┘
                              ▼
 ┌─────────────────────────────────────────────────────────────────┐

@@ -36,6 +36,8 @@ Browse catalog: https://printingpress.dev/library/travel
 
 ## Lodging filter (example: 3 adults)
 
+Take the real numbers from the trip spec or `references/personal/profile.md`. Example for 3 adults:
+
 **Hard:** sleeps 3 · **minimum 2 beds** · **preferred 2 bedrooms**
 
 ```bash

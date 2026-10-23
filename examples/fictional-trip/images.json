@@ -1,0 +1,58 @@
+{
+  "opt-1": {
+    "hero": "https://picsum.photos/seed/opt-1-hero/960/640",
+    "hero_credit": "Placeholder photo (picsum.photos)",
+    "gallery": [
+      {
+        "url": "https://picsum.photos/seed/opt-1-g1/960/640",
+        "caption": "Example photo 1"
+      },
+      {
+        "url": "https://picsum.photos/seed/opt-1-g2/960/640",
+        "caption": "Example photo 2"
+      },
+      {
+        "url": "https://picsum.photos/seed/opt-1-g3/960/640",
+        "caption": "Example photo 3"
+      }
+    ],
+    "acts": {
+      "Ridge Loop": "https://picsum.photos/seed/opt-1-a0/960/640",
+      "Hollow Lake": "https://picsum.photos/seed/opt-1-a1/960/640",
+      "Old Mill": "https://picsum.photos/seed/opt-1-a2/960/640"
+    },
+    "lodge": "https://picsum.photos/seed/opt-1-lodge/960/640",
+    "lodges": {
+      "Hollow Lake Lodge": "https://picsum.photos/seed/opt-1-l0/960/640",
+      "Pinecrest Inn": "https://picsum.photos/seed/opt-1-l1/960/640"
+    }
+  },
+  "opt-2": {
+    "hero": "https://picsum.photos/seed/opt-2-hero/960/640",
+    "hero_credit": "Placeholder photo (picsum.photos)",
+    "gallery": [
+      {
+        "url": "https://picsum.photos/seed/opt-2-g1/960/640",
+        "caption": "Example photo 1"
+      },
+      {
+        "url": "https://picsum.photos/seed/opt-2-g2/960/640",
+        "caption": "Example photo 2"
+      },
+      {
+        "url": "https://picsum.photos/seed/opt-2-g3/960/640",
+        "caption": "Example photo 3"
+      }
+    ],
+    "acts": {
+      "Bluff Trail": "https://picsum.photos/seed/opt-2-a0/960/640",
+      "Saltmarsh Cove": "https://picsum.photos/seed/opt-2-a1/960/640",
+      "Harbor Walk": "https://picsum.photos/seed/opt-2-a2/960/640"
+    },
+    "lodge": "https://picsum.photos/seed/opt-2-lodge/960/640",
+    "lodges": {
+      "Harbor House": "https://picsum.photos/seed/opt-2-l0/960/640",
+      "Bay Motel": "https://picsum.photos/seed/opt-2-l1/960/640"
+    }
+  }
+}
